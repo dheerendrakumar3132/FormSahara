@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Form Filling Service | Form Sahara</title>
      <!-- Favicon -->
-<link rel="icon" href="form-sahara-logo.jpeg" type="image/jpeg" sizes="1056x1056">
+<link rel="icon" href="form-sahara-logo" type="image/jpeg" sizes="1056x1056">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -22,6 +22,10 @@
         .whatsapp-pulse {
             animation: pulse-green 2s infinite;
         }
+
+        /* Mobile Menu Logic */
+        #mobile-menu { transition: max-height 0.3s ease-in-out; max-height: 0; overflow: hidden; }
+        #mobile-menu.open { max-height: 500px; }
     </style>
 </head>
 <body class="bg-slate-50 font-sans text-gray-800">
@@ -34,20 +38,45 @@
     <!-- Navigation -->
     <nav class="bg-blue-800 p-4 text-white shadow-xl sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2 cursor-pointer" onclick="window.location.href='index.html'">
+            <!-- Logo (Left) -->
+            <div class="flex items-center space-x-2 cursor-pointer shrink-0" onclick="window.location.href='index.html'">
                 <i class="fas fa-file-alt text-2xl text-yellow-400"></i>
                 <h1 class="text-2xl font-black tracking-tighter">FORM<span class="text-yellow-400">SAHARA</span></h1>
             </div>
-            <div class="hidden xl:flex space-x-6 font-medium text-sm items-center">
+
+            <!-- Desktop Menu (Centered) -->
+            <div class="hidden xl:flex flex-grow justify-center space-x-6 font-medium text-sm items-center">
                 <a href="index.html" class="hover:text-yellow-300">Home</a>
                 <a href="#" class="text-yellow-400 font-bold border-b-2 border-yellow-400 pb-1">Fill My Form</a>
                 <a href="banking-cards.html" class="hover:text-yellow-300">Banking Services</a>
                 <a href="contact.html" class="hover:text-yellow-300">Contact Us</a>
                 <a href="about.html" class="hover:text-yellow-300">About Us</a>
-
+                <a href="help-desk.html" class="hover:text-yellow-300">Help Desk</a>
                 <a href="jobs-exams.html" class="hover:text-yellow-300 text-yellow-400 font-bold underline">Latest Jobs</a>
             </div>
-            <button onclick="window.location.href='help-desk.html'" class="bg-yellow-500 text-blue-900 px-4 py-2 rounded font-bold hover:bg-yellow-400 transition">Help Desk</button>
+
+            <!-- Mobile Menu Toggle (3 Dots/Bars) -->
+            <div class="xl:hidden">
+                <button id="menu-btn" class="text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Spacer for Desktop Centering -->
+            <div class="hidden xl:block w-[180px]"></div>
+        </div>
+
+        <!-- Mobile Menu (Dropdown) -->
+        <div id="mobile-menu" class="xl:hidden bg-blue-900 mt-4 rounded-lg overflow-hidden">
+            <div class="flex flex-col p-4 space-y-4 text-sm font-medium">
+                <a href="index.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Home</a>
+                <a href="#" class="text-yellow-400 font-bold border-b border-blue-700 pb-2">Fill My Form</a>
+                <a href="banking-cards.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Banking Services</a>
+                <a href="contact.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Contact Us</a>
+                <a href="about.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">About Us</a>
+                <a href="help-desk.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Help Desk</a>
+                <a href="jobs-exams.html" class="text-yellow-400 font-bold underline">Latest Jobs</a>
+            </div>
         </div>
     </nav>
 
@@ -328,6 +357,19 @@
             </div>
         </div>
     </footer>
+
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times'); // Changes to X when open
+        });
+    </script>
 
 </body>
 </html>
