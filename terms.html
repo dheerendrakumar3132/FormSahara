@@ -26,22 +26,46 @@
     <!-- Navigation -->
     <nav class="bg-blue-800 p-4 text-white shadow-xl sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2">
+            <!-- Logo (Left) -->
+            <div class="flex items-center space-x-2 shrink-0">
                 <i class="fas fa-file-alt text-2xl text-yellow-400"></i>
                 <h1 class="text-2xl font-black tracking-tighter">FORM<span class="text-yellow-400">SAHARA</span></h1>
             </div>
-            </a>
-            <div class="hidden xl:flex space-x-6 font-medium text-sm items-center">
-              <a href="index.html" class="hover:text-yellow-300">Home</a>
+
+            <!-- Links (Middle - Desktop) -->
+            <div class="hidden xl:flex flex-grow justify-center space-x-6 font-medium text-sm">
+                <a href="index.html" class="hover:text-yellow-300">Home</a>
                 <a href="form-filling.html" class="hover:text-yellow-300">Fill My Form</a>
                 <a href="banking-cards.html" class="hover:text-yellow-300">Banking Services</a>
                 <a href="contact.html" class="hover:text-yellow-300">Contact Us</a>
                 <a href="about.html" class="hover:text-yellow-300">About Us</a>
-
+                <a href="help-desk.html" class="hover:text-yellow-300">Help Desk</a>
                 <a href="jobs-exams.html" class="hover:text-yellow-300 text-yellow-400 font-bold underline">Latest Jobs</a>
             </div>
-            <button onclick="window.location.href='help-desk.html'" class="bg-yellow-500 text-blue-900 px-4 py-2 rounded font-bold hover:bg-yellow-400 transition">Help Desk</button>
-        </div>  
+
+            <!-- Right Spacer for Desktop Centering Balance -->
+            <div class="hidden xl:block w-[180px]"></div>
+
+            <!-- Hamburger Button (Mobile) -->
+            <div class="xl:hidden">
+                <button id="menu-btn" class="text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Dropdown) -->
+        <div id="mobile-menu" class="xl:hidden bg-blue-900 mt-4 rounded-lg overflow-hidden">
+            <div class="flex flex-col p-4 space-y-4 text-sm font-medium">
+                <a href="index.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Home</a>
+                <a href="form-filling.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Fill My Form</a>
+                <a href="banking-cards.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Banking Services</a>
+                <a href="contact.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Contact Us</a>
+                <a href="about.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">About Us</a>
+                <a href="help-desk.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Help Desk</a>
+                <a href="jobs-exams.html" class="text-yellow-400 font-bold underline">Latest Jobs</a>
+            </div>
+        </div>
     </nav>
 
     <!-- Hero Section -->
