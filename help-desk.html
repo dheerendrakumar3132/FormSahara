@@ -3,17 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Help Desk & Support | Form Sahara</title>
+    <title>Online Form Filling Service | Form Sahara</title>
      <!-- Favicon -->
 <link rel="icon" href="form-sahara-logo.jpeg" type="image/jpeg" sizes="1056x1056">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         html { scroll-behavior: smooth; }
-        .help-card { transition: all 0.3s ease; }
-        .help-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); border-color: #3b82f6; }
-        .input-field { transition: all 0.3s ease; }
-        .input-field:focus { box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); border-color: #3b82f6; outline: none; }
+        .feature-card { transition: all 0.3s ease; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); border-color: #22c55e; }
+        
+        /* WhatsApp Pulse Animation */
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+        .whatsapp-pulse {
+            animation: pulse-green 2s infinite;
+        }
+
+        /* Mobile Menu Logic */
+        #mobile-menu { transition: max-height 0.3s ease-in-out; max-height: 0; overflow: hidden; }
+        #mobile-menu.open { max-height: 500px; }
     </style>
 </head>
 <body class="bg-slate-50 font-sans text-gray-800">
@@ -26,267 +38,268 @@
     <!-- Navigation -->
     <nav class="bg-blue-800 p-4 text-white shadow-xl sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2 cursor-pointer" onclick="window.location.href='index.html'">
+            <!-- Logo (Left) -->
+            <div class="flex items-center space-x-2 cursor-pointer shrink-0" onclick="window.location.href='index.html'">
                 <i class="fas fa-file-alt text-2xl text-yellow-400"></i>
                 <h1 class="text-2xl font-black tracking-tighter">FORM<span class="text-yellow-400">SAHARA</span></h1>
             </div>
-            <div class="hidden xl:flex space-x-6 font-medium text-sm items-center">
+
+            <!-- Desktop Menu (Centered) -->
+            <div class="hidden xl:flex flex-grow justify-center space-x-6 font-medium text-sm items-center">
                 <a href="index.html" class="hover:text-yellow-300">Home</a>
-                <a href="form-filling.html" class="hover:text-yellow-300">Fill My Form</a>
+                <a href="#" class="text-yellow-400 font-bold border-b-2 border-yellow-400 pb-1">Fill My Form</a>
                 <a href="banking-cards.html" class="hover:text-yellow-300">Banking Services</a>
                 <a href="contact.html" class="hover:text-yellow-300">Contact Us</a>
                 <a href="about.html" class="hover:text-yellow-300">About Us</a>
-
+                <a href="help-desk.html" class="hover:text-yellow-300">Help Desk</a>
                 <a href="jobs-exams.html" class="hover:text-yellow-300 text-yellow-400 font-bold underline">Latest Jobs</a>
             </div>
-            <button class="bg-yellow-400 text-blue-900 px-4 py-2 rounded font-black hover:bg-yellow-300 transition shadow-lg ring-2 ring-yellow-200">Help Desk Active</button>
+
+            <!-- Mobile Menu Toggle (3 Dots/Bars) -->
+            <div class="xl:hidden">
+                <button id="menu-btn" class="text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Spacer for Desktop Centering -->
+            <div class="hidden xl:block w-[180px]"></div>
+        </div>
+
+        <!-- Mobile Menu (Dropdown) -->
+        <div id="mobile-menu" class="xl:hidden bg-blue-900 mt-4 rounded-lg">
+            <div class="flex flex-col space-y-4 p-4 font-medium text-sm text-center">
+                <a href="index.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Home</a>
+                <a href="#" class="text-yellow-400 font-bold border-b border-blue-700 pb-2">Fill My Form</a>
+                <a href="banking-cards.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Banking Services</a>
+                <a href="contact.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Contact Us</a>
+                <a href="about.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">About Us</a>
+                <a href="help-desk.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Help Desk</a>
+                <a href="jobs-exams.html" class="text-yellow-400 font-bold underline">Latest Jobs</a>
+            </div>
         </div>
     </nav>
 
-    <!-- Help Desk Hero Section -->
-    <header class="bg-blue-700 py-16 px-4 border-b-4 border-yellow-500 relative overflow-hidden">
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <h1 class="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">Form Sahara <span class="text-yellow-400">Help Desk</span></h1>
-            <p class="text-lg text-blue-100 leading-relaxed max-w-2xl mx-auto font-light mb-8">
-                Welcome to our support center. Search our knowledge base, track your existing queries, or raise a new support ticket below.
+    <!-- Hero Section -->
+    <header class="bg-blue-700 py-20 px-4 border-b-4 border-yellow-500 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto text-center relative z-10 flex flex-col items-center">
+            <div class="bg-yellow-400 text-blue-900 font-bold px-4 py-1 rounded-full text-sm mb-6 inline-block">
+                Premium Cyber Cafe Services on Your Phone
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight leading-tight">
+                Skip the Cyber Cafe.<br> Let Experts Fill Your Forms via <span class="text-green-400">WhatsApp</span>
+            </h1>
+            <p class="text-xl text-blue-100 leading-relaxed max-w-3xl mx-auto font-light mb-10">
+                Don't worry about resizing photos, complex document uploads, or server errors. Send us your details on WhatsApp, and our experts will fill out your government, job, or admission forms flawlessly.
             </p>
             
-            <!-- Knowledge Base Search -->
-            <div class="relative max-w-2xl mx-auto">
-                <input type="text" placeholder="Search for 'How to apply PAN', 'Scholarship Error', 'Download Aadhaar'..." class="w-full p-4 pl-12 rounded-full shadow-2xl focus:ring-4 focus:ring-yellow-400 outline-none text-gray-800 text-lg">
-                <i class="fas fa-search absolute left-5 top-5 text-gray-400 text-xl"></i>
-            </div>
+            <a href="https://wa.me/919140092735?text=Hello%20Form%20Sahara,%20I%20need%20help%20filling%20out%20an%20online%20form." target="_blank" class="bg-green-500 hover:bg-green-600 text-white text-xl font-bold py-4 px-10 rounded-full transition duration-300 shadow-2xl flex items-center transform hover:scale-105 border-4 border-green-400 hover:bg-green-600 transition shadow-lg flex items-center whatsapp-pulse">
+                <i class="fab fa-whatsapp text-3xl mr-3"></i> Chat with our Expert Now
+            </a>
+            <p class="text-blue-200 text-sm mt-4 italic"><i class="fas fa-lock mr-1"></i> 100% Safe & Secure Data Handling</p>
         </div>
     </header>
 
     <!-- Main Content Container -->
-    <main class="container mx-auto px-4 py-12 max-w-7xl">
+    <main class="container mx-auto px-4 py-16 max-w-7xl">
 
-        <!-- Support Categories -->
-        <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Browse Help Topics</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            <div class="help-card bg-white p-6 rounded-xl shadow-md border border-gray-200 text-center cursor-pointer">
-                <div class="bg-blue-50 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
-                    <i class="fas fa-wpforms text-2xl text-blue-600"></i>
-                </div>
-                <h4 class="font-bold text-gray-900 mb-2">Form Filling Help</h4>
-                <p class="text-sm text-gray-500">Guides on how to accurately fill out various government forms.</p>
-            </div>
-            
-            <div class="help-card bg-white p-6 rounded-xl shadow-md border border-gray-200 text-center cursor-pointer">
-                <div class="bg-green-50 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
-                    <i class="fas fa-file-upload text-2xl text-green-600"></i>
-                </div>
-                <h4 class="font-bold text-gray-900 mb-2">Document Uploads</h4>
-                <p class="text-sm text-gray-500">Solve size, format (PDF/JPG), and compression issues.</p>
-            </div>
+        <!-- How It Works Section (4 Steps) -->
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">How It Works?</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Get your form filled without leaving your home in just 4 simple steps.</p>
+        </div>
 
-            <div class="help-card bg-white p-6 rounded-xl shadow-md border border-gray-200 text-center cursor-pointer">
-                <div class="bg-orange-50 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
-                    <i class="fas fa-rupee-sign text-2xl text-orange-600"></i>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20 relative">
+            <!-- Connecting Line (Desktop only) -->
+            <div class="hidden lg:block absolute top-12 left-[10%] right-[10%] h-1 bg-gray-200 z-0"></div>
+
+            <!-- Step 1 -->
+            <div class="relative z-10 text-center">
+                <div class="bg-white w-24 h-24 mx-auto rounded-full border-4 border-blue-500 flex items-center justify-center shadow-lg mb-6">
+                    <i class="fab fa-whatsapp text-4xl text-blue-500"></i>
                 </div>
-                <h4 class="font-bold text-gray-900 mb-2">Payment Issues</h4>
-                <p class="text-sm text-gray-500">What to do if your challan or application fee gets stuck.</p>
+                <h4 class="text-xl font-bold text-gray-900 mb-2">1. Send a Message</h4>
+                <p class="text-gray-600 text-sm">Message us on WhatsApp with the name of the form or scheme you want to apply for.</p>
             </div>
 
-            <div class="help-card bg-white p-6 rounded-xl shadow-md border border-gray-200 text-center cursor-pointer">
-                <div class="bg-red-50 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
-                    <i class="fas fa-bug text-2xl text-red-600"></i>
+            <!-- Step 2 -->
+            <div class="relative z-10 text-center">
+                <div class="bg-white w-24 h-24 mx-auto rounded-full border-4 border-yellow-500 flex items-center justify-center shadow-lg mb-6">
+                    <i class="fas fa-file-invoice text-4xl text-yellow-500"></i>
                 </div>
-                <h4 class="font-bold text-gray-900 mb-2">Report a Bug</h4>
-                <p class="text-sm text-gray-500">Report broken links or technical glitches on Form Sahara.</p>
+                <h4 class="text-xl font-bold text-gray-900 mb-2">2. Share Documents</h4>
+                <p class="text-gray-600 text-sm">Click photos of your required documents (Aadhaar, Marksheet, Photo, Signature) and send them on chat.</p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="relative z-10 text-center">
+                <div class="bg-white w-24 h-24 mx-auto rounded-full border-4 border-rose-500 flex items-center justify-center shadow-lg mb-6">
+                    <i class="fas fa-qrcode text-4xl text-rose-500"></i>
+                </div>
+                <h4 class="text-xl font-bold text-gray-900 mb-2">3. Make Payment</h4>
+                <p class="text-gray-600 text-sm">Pay the official government form fee plus a nominal processing charge securely via UPI (PhonePe/GPay).</p>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="relative z-10 text-center">
+                <div class="bg-white w-24 h-24 mx-auto rounded-full border-4 border-green-500 flex items-center justify-center shadow-lg mb-6">
+                    <i class="fas fa-file-pdf text-4xl text-green-500"></i>
+                </div>
+                <h4 class="text-xl font-bold text-gray-900 mb-2">4. Get the Final Print</h4>
+                <p class="text-gray-600 text-sm">We will fill your form error-free and send the final submitted Application PDF directly to your WhatsApp.</p>
             </div>
         </div>
 
-        <!-- Ticket System Section -->
-        <div class="flex flex-col lg:flex-row gap-10">
-            
-            <!-- Left Column: Track Ticket & Direct Contact -->
-            <div class="w-full lg:w-4/12 space-y-8">
-                
-                <!-- Track Ticket Card -->
-                <div class="bg-blue-900 rounded-2xl shadow-xl p-8 text-white relative overflow-hidden">
-                    <i class="fas fa-ticket-alt absolute -bottom-6 -right-6 text-8xl text-blue-800 opacity-50"></i>
-                    <div class="relative z-10">
-                        <h3 class="text-2xl font-bold mb-2 text-yellow-400">Track Your Ticket</h3>
-                        <p class="text-blue-200 text-sm mb-6 leading-relaxed">Already submitted a support request? Enter your Ticket ID to check the current status.</p>
-                        
-                        <form action="#" class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-semibold text-blue-100 mb-2">Ticket ID</label>
-                                <input type="text" placeholder="e.g. FS-98765432" class="w-full px-4 py-3 rounded-lg border-0 bg-white text-gray-900 focus:ring-4 focus:ring-yellow-400 outline-none uppercase font-mono">
-                            </div>
-                            <button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold py-3 rounded-lg transition duration-300 shadow-md">
-                                Check Status
-                            </button>
-                        </form>
-                    </div>
-                </div>
+        <!-- Popular Forms Section -->
+        <div class="bg-slate-100 rounded-3xl p-8 md:p-12 mb-20 shadow-inner border border-gray-200">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">Popular Forms We Fill</h2>
+                <p class="text-gray-600">Don't see your form here? Don't worry, message us and we will fill it.</p>
+            </div>
 
-                <!-- Alternative Help Card -->
-                <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Need Immediate Help?</h3>
-                    <p class="text-gray-600 text-sm mb-6">If your issue is urgent, you can bypass the ticketing system and reach out to us directly via WhatsApp.</p>
-                    
-                    <a href="#" class="flex items-center justify-center w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md">
-                        <i class="fab fa-whatsapp text-xl mr-2"></i> Chat on WhatsApp
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-green-500 transition duration-300">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-graduation-cap text-3xl text-blue-600"></i>
+                        <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded">High Demand</span>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-900 mb-2">Student Scholarships</h3>
+                    <p class="text-sm text-gray-500 mb-4">UP Scholarship, NSP Portal, Post Matric, Pre Matric forms.</p>
+                    <a href="https://wa.me/919140092735?text=Hello%20Form%20Sahara,%20I%20want%20to%20apply%20for%20a%20Scholarship%20Form." target="_blank" class="text-green-600 font-bold hover:text-green-700 flex items-center">
+                        <i class="fab fa-whatsapp mr-2 text-lg"></i> Fill Now
                     </a>
-                    
-                    <div class="mt-6 pt-6 border-t border-gray-100">
-                        <p class="text-xs text-gray-500 text-center">Average response time for tickets is 24 hours. WhatsApp chat connects you to a live agent within minutes during working hours.</p>
-                    </div>
                 </div>
 
-            </div>
-
-            <!-- Right Column: Raise a Ticket Form -->
-            <div class="w-full lg:w-8/12">
-                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10 border-t-8 border-yellow-500">
-                    <h3 class="text-3xl font-bold text-gray-900 mb-2">Raise a Support Ticket</h3>
-                    <p class="text-gray-500 mb-8 text-sm">Fill out the form below to create a detailed support ticket. Our technical team will investigate and assist you.</p>
-
-                    <!-- Success Message Box (Hidden by default) -->
-                    <div id="successMessage" class="hidden bg-green-50 border border-green-400 text-green-800 px-6 py-5 rounded-lg mb-8 shadow-sm">
-                        <div class="flex items-center mb-2">
-                            <i class="fas fa-check-circle text-2xl text-green-600 mr-3"></i>
-                            <p class="font-bold text-lg">Ticket Generated Successfully!</p>
-                        </div>
-                        <div class="ml-9">
-                            <p class="text-sm mb-2 text-gray-700">We have received your issue details and sent them to our team.</p>
-                            <p class="text-sm">Your Ticket ID is: <span id="displayTicketId" class="font-mono font-bold bg-white text-blue-800 px-3 py-1 rounded border border-green-300 ml-1 shadow-sm"></span></p>
-                            <p class="text-xs mt-3 text-gray-500 italic">Please note down this Ticket ID. You can use it to track your query status on the left.</p>
-                        </div>
+                <!-- Service 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-green-500 transition duration-300">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-briefcase text-3xl text-slate-700"></i>
                     </div>
+                    <h3 class="font-bold text-lg text-gray-900 mb-2">Govt. Job Applications</h3>
+                    <p class="text-sm text-gray-500 mb-4">SSC, UPSC, UP Police, Railway, Banking, and Teaching recruitment forms.</p>
+                    <a href="https://wa.me/919140092735?text=Hello%20Form%20Sahara,%20I%20want%20to%20apply%20for%20a%20Government%20Job%20Form." target="_blank" class="text-green-600 font-bold hover:text-green-700 flex items-center">
+                        <i class="fab fa-whatsapp mr-2 text-lg"></i> Fill Now
+                    </a>
+                </div>
 
-                    <!-- FORM SUBMIT INTEGRATION -->
-                    <form id="helpdeskForm" action="https://formsubmit.co/ajax/pateldheerendra16@gmail.com" method="POST" class="space-y-6">
-                        
-                        <!-- FormSubmit Configuration & Hidden Fields -->
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_subject" value="New Support Ticket Created!">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="Ticket ID" id="hiddenTicketId" value="">
+                <!-- Service 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-green-500 transition duration-300">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-id-card text-3xl text-blue-400"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-900 mb-2">PAN Card & Passports</h3>
+                    <p class="text-sm text-gray-500 mb-4">New PAN Card, PAN Correction, Passport fresh application or renewal.</p>
+                    <a href="https://wa.me/919140092735?text=Hello%20Form%20Sahara,%20I%20need%20help%20with%20PAN/Passport%20application." target="_blank" class="text-green-600 font-bold hover:text-green-700 flex items-center">
+                        <i class="fab fa-whatsapp mr-2 text-lg"></i> Fill Now
+                    </a>
+                </div>
 
-                        <!-- Name & Mobile (With Country Code) -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Full Name <span class="text-red-500">*</span></label>
-                                <input type="text" id="name" name="Full Name" required placeholder="Enter your full name" class="input-field w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900">
-                            </div>
-                            <div>
-                                <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">Registered Mobile <span class="text-red-500">*</span></label>
-                                <div class="flex">
-                                    <select id="countryCode" name="Country Code" class="input-field w-28 px-1 py-3 rounded-l-lg border border-r-0 border-gray-300 bg-gray-200 text-gray-700 font-bold focus:outline-none">
-                                        <option value="+93">AF (+93)</option>
-                                        <option value="+1">US (+1)</option>
-                                        <option value="+44">UK (+44)</option>
-                                        <option value="+61">AU (+61)</option>
-                                        <option value="+86">CN (+86)</option>
-                                        <option value="+49">DE (+49)</option>
-                                        <option value="+33">FR (+33)</option>
-                                        <option value="+91" selected>IN (+91)</option>
-                                        <option value="+81">JP (+81)</option>
-                                        <option value="+977">NP (+977)</option>
-                                        <option value="+92">PK (+92)</option>
-                                        <option value="+94">LK (+94)</option>
-                                        <option value="+971">AE (+971)</option>
-                                        <option value="+65">SG (+65)</option>
-                                        <option value="+27">ZA (+27)</option>
-                                    </select>
-                                    <input type="tel" id="phone" name="Mobile Number" required maxlength="10" pattern="[0-9]{10}" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="10-digit mobile no." class="input-field w-full px-4 py-3 rounded-r-lg border border-gray-300 bg-gray-50 text-gray-900">
-                                </div>
-                            </div>
-                        </div>
+                <!-- Service 4 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-green-500 transition duration-300">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-tractor text-3xl text-emerald-600"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-900 mb-2">Agriculture / Rural Schemes</h3>
+                    <p class="text-sm text-gray-500 mb-4">PM Kisan KYC, Ration Card updates, NREGA, Fasal Bima.</p>
+                    <a href="https://wa.me/919140092735?text=Hello%20Form%20Sahara,%20I%20want%20to%20apply%20for%20an%20Agriculture/Rural%20scheme." target="_blank" class="text-green-600 font-bold hover:text-green-700 flex items-center">
+                        <i class="fab fa-whatsapp mr-2 text-lg"></i> Fill Now
+                    </a>
+                </div>
 
-                        <!-- Email & Category -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email Address <span class="text-red-500">*</span></label>
-                                <input type="email" id="email" name="Email Address" required placeholder="To receive ticket updates" class="input-field w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900">
-                            </div>
-                            <div>
-                                <label for="category" class="block text-sm font-semibold text-gray-700 mb-2">Issue Category <span class="text-red-500">*</span></label>
-                                <select id="category" name="Issue Category" required class="input-field w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900">
-                                    <option value="" disabled selected>Select the type of issue</option>
-                                    <option value="link">Broken Link / Dead Website</option>
-                                    <option value="form_help">Need Help Filling a Form</option>
-                                    <option value="document">Document Resizing / Format Issue</option>
-                                    <option value="missing">Form/Scheme Not Listed Here</option>
-                                    <option value="technical">Website Technical Glitch</option>
-                                    <option value="other">Other Technical Support</option>
-                                </select>
-                            </div>
-                        </div>
+                <!-- Service 5 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-green-500 transition duration-300">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-university text-3xl text-yellow-600"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-900 mb-2">College/University Admissions</h3>
+                    <p class="text-sm text-gray-500 mb-4">CUET, NEET, JEE Mains, State University Admission counseling forms.</p>
+                    <a href="https://wa.me/919140092735?text=Hello%20Form%20Sahara,%20I%20want%20to%20fill%20a%20University/Entrance%20Exam%20form." target="_blank" class="text-green-600 font-bold hover:text-green-700 flex items-center">
+                        <i class="fab fa-whatsapp mr-2 text-lg"></i> Fill Now
+                    </a>
+                </div>
 
-                        <!-- Ticket Subject -->
-                        <div>
-                            <label for="subject" class="block text-sm font-semibold text-gray-700 mb-2">Ticket Subject <span class="text-red-500">*</span></label>
-                            <input type="text" id="subject" name="Subject" required placeholder="Brief summary of your issue" class="input-field w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900">
-                        </div>
-
-                        <!-- Detailed Description -->
-                        <div>
-                            <label for="description" class="block text-sm font-semibold text-gray-700 mb-2">Detailed Description <span class="text-red-500">*</span></label>
-                            <textarea id="description" name="Detailed Description" rows="5" required placeholder="Please explain your issue in detail. If a link is broken, mention the name of the scheme/form. Do not share passwords or OTPs." class="input-field w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 resize-none"></textarea>
-                        </div>
-
-                        <!-- File Upload (Optional) -->
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Attach Screenshot (Optional)</label>
-                            <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg bg-gray-50 hover:bg-gray-100 transition">
-                                <div class="space-y-1 text-center">
-                                    <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-3"></i>
-                                    <div class="flex text-sm text-gray-600 justify-center">
-                                        <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500 px-2 py-1 shadow-sm border border-gray-200">
-                                            <span>Upload a file</span>
-                                            <input id="file-upload" name="Attachment" type="file" class="sr-only" accept="image/*,.pdf">
-                                        </label>
-                                    </div>
-                                    <p class="text-xs text-gray-500 mt-2">PNG, JPG, PDF up to 2MB</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <div>
-                            <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg py-4 rounded-lg transition duration-300 shadow-md flex justify-center items-center">
-                                <i class="fas fa-ticket-alt mr-2"></i> Generate Support Ticket
-                            </button>
-                        </div>
-                    </form>
+                <!-- Service 6 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-green-500 transition duration-300">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-file-signature text-3xl text-violet-600"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-900 mb-2">Certificates & Licenses</h3>
+                    <p class="text-sm text-gray-500 mb-4">Driving License slot booking, Income/Caste/Domicile Certificates.</p>
+                    <a href="https://wa.me/919140092735?text=Hello%20Form%20Sahara,%20I%20need%20help%20applying%20for%20a%20Certificate/License." target="_blank" class="text-green-600 font-bold hover:text-green-700 flex items-center">
+                        <i class="fab fa-whatsapp mr-2 text-lg"></i> Fill Now
+                    </a>
                 </div>
             </div>
-
+            
+            <div class="text-center mt-10">
+                <a href="https://wa.me/919140092735?text=Hello%20Form%20Sahara,%20I%20want%20to%20know%20if%20you%20can%20fill%20a%20specific%20form%20for%20me." target="_blank" class="inline-block bg-white text-gray-800 font-bold py-3 px-8 rounded-full shadow border border-gray-300 hover:bg-gray-50 transition">
+                    Don't see your form? Ask us on WhatsApp
+                </a>
+            </div>
         </div>
 
-        <!-- Troubleshooting FAQ -->
-        <div class="mt-20 mb-10">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8 border-l-4 border-blue-600 pl-4">Technical Troubleshooting FAQ</h2>
+        <!-- Why Choose Us & Pricing -->
+        <div class="flex flex-col lg:flex-row gap-10 mb-16">
             
-            <div class="space-y-4">
-                <!-- FAQ Item 1 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                    <h4 class="font-bold text-gray-900 text-lg mb-2">1. "The official government website is not loading."</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed">Government servers (like SSC, UP Police, or UIDAI) often face heavy traffic during form submission deadlines. If a link provided by Form Sahara is not opening, please try accessing the site late at night or early morning when server loads are lower. If it's broken permanently, raise a ticket above.</p>
+            <!-- Why Choose Us -->
+            <div class="w-full lg:w-1/2">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-3">Why Choose Form Sahara Experts?</h3>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 text-xl mt-1 mr-3"></i>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Error-Free Application</h4>
+                            <p class="text-gray-600 text-sm">We double-check every spelling and detail before final submission to prevent form rejection.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 text-xl mt-1 mr-3"></i>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Document Resizing Handled</h4>
+                            <p class="text-gray-600 text-sm">You just send normal photos. We handle cropping, PDF conversion, and shrinking files to exact KB requirements.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 text-xl mt-1 mr-3"></i>
+                        <div>
+                            <h4 class="font-bold text-gray-800">100% Data Privacy</h4>
+                            <p class="text-gray-600 text-sm">Your Aadhaar, Marksheets, and OTPs are strictly confidential. We delete your documents from our system right after the form is successfully submitted.</p>
+                        </div>
+                    </div>
                 </div>
-                
-                <!-- FAQ Item 2 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                    <h4 class="font-bold text-gray-900 text-lg mb-2">2. "My photo/signature size is too large to upload."</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed">Most government forms require photos under 50KB and signatures under 20KB. You can use free online image resizers or MS Paint on your computer to reduce the dimensions and file size before uploading.</p>
-                </div>
+            </div>
 
-                <!-- FAQ Item 3 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                    <h4 class="font-bold text-gray-900 text-lg mb-2">3. "Payment deducted but application status shows 'Pending'."</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed">This is a common bank gateway sync issue. Do <strong>not</strong> make the payment again immediately. Wait for 24-48 hours for the banking gateway to update the merchant (the government site). Keep your transaction ID/reference number safe.</p>
+            <!-- Pricing/Fees -->
+            <div class="w-full lg:w-1/2">
+                <div class="bg-blue-900 text-white rounded-2xl p-8 shadow-xl">
+                    <h3 class="text-2xl font-bold text-yellow-400 mb-4"><i class="fas fa-tags mr-2"></i> Transparent Pricing</h3>
+                    <p class="text-blue-100 mb-6 text-sm">We believe in complete transparency. There are no hidden charges.</p>
+                    
+                    <div class="bg-blue-800 rounded-lg p-4 mb-4 border border-blue-700">
+                        <div class="flex justify-between items-center border-b border-blue-700 pb-2 mb-2">
+                            <span class="font-semibold">Official Govt. Fee</span>
+                            <span class="text-gray-300">As per actual Form</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-blue-700 pb-2 mb-2">
+                            <span class="font-semibold">Our Service Charge</span>
+                            <span class="text-yellow-400 font-bold">Starts @ ₹50 - ₹100 only</span>
+                        </div>
+                        <div class="text-xs text-blue-200 mt-3 italic">
+                            * Service charge depends on the length and complexity of the form. We will tell you the exact total amount before starting the process.
+                        </div>
+                    </div>
+                    
+                    <a href="https://wa.me/919140092735?text=Hello%20Form%20Sahara,%20Hi,%20I%20want%20to%20know%20the%20charges%20for%20filling%20a%20form." target="_blank" class="block w-full bg-yellow-500 text-blue-900 text-center font-bold py-3 rounded-lg hover:bg-yellow-400 transition">
+                        Ask for a Quote on WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
 
     </main>
 
-    <!-- Footer -->
+   <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-16 pb-8 border-t-4 border-yellow-500">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <!-- About -->
@@ -345,54 +358,16 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT FOR EMAIL SUBMISSION & TICKET GENERATION -->
+    <!-- Mobile Menu Toggle Script -->
     <script>
-        document.getElementById('helpdeskForm').addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            
-            const form = e.target;
-            const submitBtn = document.getElementById('submitBtn');
-            const successMsg = document.getElementById('successMessage');
-            const displayTicketId = document.getElementById('displayTicketId');
-            const hiddenTicketId = document.getElementById('hiddenTicketId');
-            
-            // Generate Random Support Ticket ID (e.g., FS-48291054)
-            const randomID = Math.floor(10000000 + Math.random() * 90000000);
-            const ticketID = 'FS-' + randomID;
-            
-            // Set Ticket ID in hidden input (to be sent via email) and display span
-            hiddenTicketId.value = ticketID;
-            displayTicketId.innerText = ticketID;
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-            // Show loading state
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Generating Ticket...';
-            submitBtn.disabled = true;
-            submitBtn.classList.add('opacity-70');
-
-            // Send data using fetch to FormSubmit
-            fetch(form.action, {
-                method: form.method,
-                body: new FormData(form)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success || data.success === "true") {
-                    form.reset(); // Clear form fields
-                    successMsg.classList.remove('hidden'); // Show success message with Ticket ID
-                    form.classList.add('hidden'); // Hide the form completely
-                } else {
-                    alert('Something went wrong! Please try again later.');
-                }
-            })
-            .catch(error => {
-                alert('Error submitting form! Check your internet connection.');
-            })
-            .finally(() => {
-                // Restore button state
-                submitBtn.innerHTML = '<i class="fas fa-ticket-alt mr-2"></i> Generate Support Ticket';
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('opacity-70');
-            });
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times'); // Changes to X when open
         });
     </script>
 
