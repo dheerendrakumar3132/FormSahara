@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Sahara | All Government Forms and Services</title>
+    <!-- Favicon -->
+<link rel="icon" href="form-sahara-logo" type="image/jpeg" sizes="1056x1056">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        .service-card { transition: all 0.3s ease; border: 1px solid #e5e7eb; height: 100%; }
+        .service-card:hover { transform: translateY(-8px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); border-color: #3b82f6; }
+        
+        /* New Updates Marquee Animation */
+        @keyframes scrollLeft {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: scrollLeft 20s linear infinite;
+        }
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans">
+
+    <!-- Top Bar Info -->
+    <div class="bg-gray-900 text-white text-xs py-2 text-center">
+        <span><i class="fas fa-bullhorn text-yellow-400"></i> Latest: UP Scholarship 2026 Registration Open | CUET Form Live | PAN-Aadhaar Link Status Check</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-blue-800 p-4 text-white shadow-xl sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-file-alt text-2xl text-yellow-400"></i>
+                <h1 class="text-2xl font-black tracking-tighter">FORM<span class="text-yellow-400">SAHARA</span></h1>
+            </div>
+            <div class="hidden xl:flex space-x-6 font-medium text-sm">
+                <a href="index.html" class="hover:text-yellow-300">Home</a>
+                <a href="form-filling.html" class="hover:text-yellow-300">Fill My Form</a>
+                <a href="banking-cards.html" class="hover:text-yellow-300">Banking Services</a>
+                <a href="contact.html" class="hover:text-yellow-300">Contact Us</a>
+                <a href="about.html" class="hover:text-yellow-300">About Us</a>
+
+                <a href="jobs-exams.html" class="hover:text-yellow-300 text-yellow-400 font-bold underline">Latest Jobs</a>
+            </div>
+            <button onclick="window.location.href='help-desk.html'" class="bg-yellow-500 text-blue-900 px-4 py-2 rounded font-bold hover:bg-yellow-400 transition">Help Desk</button>
+        </div>
+    </nav>
+
+    <!-- New Updates Marquee -->
+    <div class="bg-red-600 text-white py-2 marquee-container shadow-md border-b-2 border-red-800">
+        <div class="marquee-content font-semibold text-sm">
+            <span class="mx-6"><i class="fas fa-bell text-yellow-300 mr-2"></i>New: UP Police Constable 2026 Admit Card Released!</span>
+            <span class="mx-6"><i class="fas fa-bolt text-yellow-300 mr-2"></i>Alert: SSC CGL 2026 Notification Out - Apply Now.</span>
+            <span class="mx-6"><i class="fas fa-bullhorn text-yellow-300 mr-2"></i>Update: UP Board 10th/12th Result Date Announced.</span>
+            <span class="mx-6"><i class="fas fa-clock text-yellow-300 mr-2"></i>Reminder: Last Date for PM Kisan E-KYC is Approaching fast.</span>
+        </div>
+    </div>
+
+    <!-- Search Section -->
+    <div class="bg-blue-700 py-12 px-4">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-white text-3xl font-bold mb-6">Which form are you looking for?</h2>
+            <div class="relative">
+                <input type="text" id="searchInput" placeholder="Search for 'Aadhaar', 'Driving', 'Gas', 'PF', 'GST'..." class="w-full p-4 pl-12 rounded-full shadow-2xl focus:ring-4 focus:ring-yellow-400 outline-none text-gray-800 text-lg">
+                <i class="fas fa-search absolute left-5 top-5 text-gray-400 text-xl"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-10">
+
+        <!-- Identity & Common Cards Section -->
+        <h3 id="id-cards" class="text-2xl font-bold mb-6 border-l-4 border-blue-600 pl-3 text-gray-800">Important Identity Cards</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-fingerprint text-3xl text-blue-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">Aadhaar Services</h4>
+                <p class="text-xs text-gray-500 mb-4">Download, Update, Status Check</p>
+                <a href="https://myaadhaar.uidai.gov.in/" target="_blank" class="block text-center bg-blue-600 text-white py-2 rounded text-sm font-semibold hover:bg-blue-700">Open UIDAI Portal</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-red-500">
+                <i class="fas fa-id-card text-3xl text-red-500 mb-4"></i>
+                <h4 class="font-bold text-gray-800">Voter ID (NVSP)</h4>
+                <p class="text-xs text-gray-500 mb-4">New Registration, Correction, Search</p>
+                <a href="https://voters.eci.gov.in/" target="_blank" class="block text-center bg-red-500 text-white py-2 rounded text-sm font-semibold hover:bg-red-600">Go to ECI</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-blue-400">
+                <i class="fas fa-id-card text-3xl text-blue-400 mb-4"></i>
+                <h4 class="font-bold text-gray-800">PAN Card Online</h4>
+                <p class="text-xs text-gray-500 mb-4">Apply for New PAN or Correction</p>
+                <a href="https://tinpan.proteantech.in/" target="_blank" class="block text-center bg-blue-400 text-white py-2 rounded text-sm font-semibold hover:bg-blue-500">Apply via NSDL</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-orange-500">
+                <i class="fas fa-id-badge text-3xl text-orange-500 mb-4"></i>
+                <h4 class="font-bold text-gray-800">E-Shram Card</h4>
+                <p class="text-xs text-gray-500 mb-4">Unorganized Workers Registration</p>
+                <a href="https://eshram.gov.in/" target="_blank" class="block text-center bg-orange-500 text-white py-2 rounded text-sm font-semibold hover:bg-orange-600">Register Now</a>
+            </div>
+        </div>
+
+        <!-- Section 1: Finance & Banking Cards -->
+        <h3 id="banking" class="text-2xl font-bold mb-6 border-l-4 border-green-600 pl-3 text-gray-800">1. Finance & Banking Services</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-green-600">
+                <i class="fas fa-credit-card text-3xl text-green-600 mb-4"></i>
+                <h4 class="font-bold text-lg text-gray-800">ATM / Debit Card Online</h4>
+                <p class="text-xs text-gray-500 mb-4">Apply online, Block, or Pin Generation for all banks.</p>
+                <a href="banking-cards.html" target="_blank" class="block text-center bg-green-600 text-white py-2 rounded text-sm font-semibold hover:bg-green-700">Official Portal</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-blue-600">
+                <i class="fas fa-credit-card text-3xl text-blue-600 mb-4"></i>
+                <h4 class="font-bold text-lg text-gray-800">Credit Card Application</h4>
+                <p class="text-xs text-gray-500 mb-4">SBI, HDFC, Axis and Other Premium Credit Cards.</p>
+                <a href="banking-cards.html" target="_blank" class="block text-center bg-blue-600 text-white py-2 rounded text-sm font-semibold hover:bg-blue-700">Check Eligibility</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-yellow-500">
+                <i class="fas fa-bolt text-3xl text-yellow-500 mb-4"></i>
+                <h4 class="font-bold text-lg text-gray-800">Bajaj Finserv EMI Card</h4>
+                <p class="text-xs text-gray-500 mb-4">No Cost EMI Card Registration and Approval.</p>
+                <a href="https://www.bajajfinserv.in/" target="_blank" class="block text-center bg-yellow-500 text-white py-2 rounded text-sm font-semibold hover:bg-yellow-600">Apply Now</a>
+            </div>
+        </div>
+
+        <!-- Section 2: Transport & Vehicle Services -->
+        <h3 id="transport" class="text-2xl font-bold mb-6 border-l-4 border-slate-700 pl-3 text-gray-800">2. Transport & Vehicle Services (Sarathi/Vahan)</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-address-card text-3xl text-slate-700 mb-4"></i>
+                <h4 class="font-bold text-gray-800">Driving License (DL)</h4>
+                <p class="text-[10px] text-gray-500 mb-2">Learner's, Permanent & Slot Booking</p>
+                <a href="https://sarathi.parivahan.gov.in/" target="_blank" class="block text-center bg-slate-700 text-white py-2 rounded text-xs font-semibold hover:bg-slate-800">Go to Sarathi</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-search-location text-3xl text-slate-700 mb-4"></i>
+                <h4 class="font-bold text-gray-800">RC Status / Download</h4>
+                <p class="text-[10px] text-gray-500 mb-2">Check Vehicle Details & Download RC</p>
+                <a href="https://vahan.parivahan.gov.in/vahan/vahan/ui/login/login.xhtml" target="_blank" class="block text-center bg-slate-700 text-white py-2 rounded text-xs font-semibold hover:bg-slate-800">Go to Vahan</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-tablet-alt text-3xl text-slate-700 mb-4"></i>
+                <h4 class="font-bold text-gray-800">HSRP Number Plate</h4>
+                <p class="text-[10px] text-gray-500 mb-2">High-Security Plate Online Booking</p>
+                <a href="https://www.bookmyhsrp.com/" target="_blank" class="block text-center bg-slate-700 text-white py-2 rounded text-xs font-semibold hover:bg-slate-800">Book HSRP</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-smog text-3xl text-slate-700 mb-4"></i>
+                <h4 class="font-bold text-gray-800">PUC Certificate</h4>
+                <p class="text-[10px] text-gray-500 mb-2">Online Pollution Check & Download</p>
+                <a href="https://vahan.parivahan.gov.in/puc/" target="_blank" class="block text-center bg-slate-700 text-white py-2 rounded text-xs font-semibold hover:bg-slate-800">Check PUC</a>
+            </div>
+        </div>
+
+        <!-- Section 3: Special Social Welfare Cards -->
+        <h3 id="welfare" class="text-2xl font-bold mb-6 border-l-4 border-orange-600 pl-3 text-gray-800">3. Social Welfare Cards</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-tools text-3xl text-orange-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">NREGA Job Card</h4>
+                <p class="text-xs text-gray-500 mb-4">Check Beneficiary List & New Registration</p>
+                <a href="https://nrega.nic.in/" target="_blank" class="block text-center bg-orange-600 text-white py-2 rounded text-sm font-semibold hover:bg-orange-700">Check List</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-wheelchair text-3xl text-purple-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">UDID Card</h4>
+                <p class="text-xs text-gray-500 mb-4">Apply for Disability Certificate</p>
+                <a href="https://www.swavlambancard.gov.in/" target="_blank" class="block text-center bg-purple-600 text-white py-2 rounded text-sm font-semibold hover:bg-purple-700">Apply Now</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-user-tie text-3xl text-slate-800 mb-4"></i>
+                <h4 class="font-bold text-gray-800">Labor Card</h4>
+                <p class="text-xs text-gray-500 mb-4">UPBOCW Labor Registration</p>
+                <a href="https://www.upbocw.in/" target="_blank" class="block text-center bg-slate-800 text-white py-2 rounded text-sm font-semibold hover:bg-slate-900">Open Portal</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-seedling text-3xl text-green-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">PM Kisan Status</h4>
+                <p class="text-xs text-gray-500 mb-4">Check Installments & Complete KYC</p>
+                <a href="https://www.pmkisan.gov.in/" target="_blank" class="block text-center bg-green-600 text-white py-2 rounded text-sm font-semibold hover:bg-green-700">Check Status</a>
+            </div>
+        </div>
+
+        <!-- NEW SECTION 4: Pension & Retirement Services -->
+        <h3 id="pension" class="text-2xl font-bold mb-6 border-l-4 border-violet-600 pl-3 text-gray-800">4. Pension & Retirement Services</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-piggy-bank text-3xl text-violet-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">EPFO / PF Portal</h4>
+                <p class="text-xs text-gray-500 mb-4">Check Passbook, Claim PF & UAN Activation</p>
+                <a href="https://unifiedportal-mem.epfindia.gov.in/memberinterface/" target="_blank" class="block text-center bg-violet-600 text-white py-2 rounded text-sm font-semibold hover:bg-violet-700">Member Portal</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-chart-line text-3xl text-violet-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">NPS Account</h4>
+                <p class="text-xs text-gray-500 mb-4">National Pension System Registration & Login</p>
+                <a href="https://npstrust.org.in/open-an-nps-account" target="_blank" class="block text-center bg-violet-600 text-white py-2 rounded text-sm font-semibold hover:bg-violet-700">Apply for NPS</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-blind text-3xl text-violet-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">Old Age/Widow Pension</h4>
+                <p class="text-xs text-gray-500 mb-4">Apply for state pensions and check beneficiary status.</p>
+                <a href="https://services.india.gov.in/service/detail/pension-for-old-age-widows-deserted-women-unmarried-women-and-transgender-puducherry" target="_blank" class="block text-center bg-violet-600 text-white py-2 rounded text-sm font-semibold hover:bg-violet-700">UP SSPY Portal</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-file-signature text-3xl text-violet-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">Jeevan Pramaan</h4>
+                <p class="text-xs text-gray-500 mb-4">Digital Life Certificate for Pensioners</p>
+                <a href="https://jeevanpramaan.gov.in/" target="_blank" class="block text-center bg-violet-600 text-white py-2 rounded text-sm font-semibold hover:bg-violet-700">Generate DLC</a>
+            </div>
+        </div>
+
+        <!-- NEW SECTION 5: Business & Startup Registrations -->
+        <h3 id="business" class="text-2xl font-bold mb-6 border-l-4 border-cyan-600 pl-3 text-gray-800">5. Business & Startup Registrations</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-industry text-3xl text-cyan-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">Udyam Registration</h4>
+                <p class="text-xs text-gray-500 mb-4">Official MSME Registration for small businesses.</p>
+                <a href="https://udyamregistration.gov.in/" target="_blank" class="block text-center bg-cyan-600 text-white py-2 rounded text-sm font-semibold hover:bg-cyan-700">Register MSME</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-file-invoice-dollar text-3xl text-cyan-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">GST Registration</h4>
+                <p class="text-xs text-gray-500 mb-4">Apply for New GSTIN or file GST Returns.</p>
+                <a href="https://www.gst.gov.in/" target="_blank" class="block text-center bg-cyan-600 text-white py-2 rounded text-sm font-semibold hover:bg-cyan-700">GST Portal</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-utensils text-3xl text-cyan-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">FSSAI Food License</h4>
+                <p class="text-xs text-gray-500 mb-4">Registration for food business operators (FoSCoS).</p>
+                <a href="https://foscos.fssai.gov.in/" target="_blank" class="block text-center bg-cyan-600 text-white py-2 rounded text-sm font-semibold hover:bg-cyan-700">Apply FSSAI</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-store text-3xl text-cyan-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">Shop & Establishment</h4>
+                <p class="text-xs text-gray-500 mb-4">Labor department registration for shops/offices.</p>
+                <a href="https://www.nsws.gov.in/" target="_blank" class="block text-center bg-cyan-600 text-white py-2 rounded text-sm font-semibold hover:bg-cyan-700">Labor Portal</a>
+            </div>
+        </div>
+
+        <!-- NEW SECTION 6: Agriculture & Rural Welfare -->
+        <h3 id="agriculture" class="text-2xl font-bold mb-6 border-l-4 border-emerald-600 pl-3 text-gray-800">6. Agriculture & Rural Welfare</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-tractor text-3xl text-emerald-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">Kisan Credit Card</h4>
+                <p class="text-xs text-gray-500 mb-4">Apply for KCC loan for agricultural expenses.</p>
+                <a href="https://www.myscheme.gov.in/schemes/kcc" target="_blank" class="block text-center bg-emerald-600 text-white py-2 rounded text-sm font-semibold hover:bg-emerald-700">Apply KCC</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-cloud-sun-rain text-3xl text-emerald-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">PM Fasal Bima</h4>
+                <p class="text-xs text-gray-500 mb-4">Crop insurance scheme registration and claims.</p>
+                <a href="https://pmfby.gov.in/" target="_blank" class="block text-center bg-emerald-600 text-white py-2 rounded text-sm font-semibold hover:bg-emerald-700">Insure Crop</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-solar-panel text-3xl text-emerald-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">PM Surya Ghar</h4>
+                <p class="text-xs text-gray-500 mb-4">Free electricity via rooftop solar panel scheme.</p>
+                <a href="https://pmsuryaghar.gov.in/" target="_blank" class="block text-center bg-emerald-600 text-white py-2 rounded text-sm font-semibold hover:bg-emerald-700">Apply Solar</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow">
+                <i class="fas fa-id-card-clip text-3xl text-emerald-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">Ration Card (FCS)</h4>
+                <p class="text-xs text-gray-500 mb-4">Check ration card list, add members, or apply new.</p>
+                <a href="https://fcs.up.gov.in/" target="_blank" class="block text-center bg-emerald-600 text-white py-2 rounded text-sm font-semibold hover:bg-emerald-700">FCS Portal</a>
+            </div>
+        </div>
+
+        <!-- Section 7 & 8: Education and Utility -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <!-- 7. Education & Students Services -->
+            <div class="bg-white p-6 rounded-xl shadow border-l-8 border-blue-500">
+                <h4 class="font-bold text-xl mb-4 text-blue-800"><i class="fas fa-graduation-cap mr-2"></i>7. Education & Student Services</h4>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center border-b pb-2">
+                        <span class="text-gray-700"><b>DigiLocker:</b> Fetch Marksheets/Certificates</span>
+                        <a href="https://www.digitallocker.gov.in/" target="_blank" class="text-blue-600 font-bold underline hover:text-blue-800">Login</a>
+                    </div>
+                    <div class="flex justify-between items-center border-b pb-2">
+                        <span class="text-gray-700"><b>NSP Portal:</b> Central Scholarships</span>
+                        <a href="https://scholarships.gov.in/" target="_blank" class="text-blue-600 font-bold underline hover:text-blue-800">Apply</a>
+                    </div>
+                    <div class="flex justify-between items-center border-b pb-2">
+                        <span class="text-gray-700"><b>ABC ID:</b> Academic Bank of Credits</span>
+                        <a href="https://www.abc.gov.in/" target="_blank" class="text-blue-600 font-bold underline hover:text-blue-800">Create ID</a>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-700"><b>NTA Exams:</b> CUET, NEET, JEE Mains</span>
+                        <a href="https://nta.ac.in/" target="_blank" class="text-blue-600 font-bold underline hover:text-blue-800">NTA Portal</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Utility & Daily Needs -->
+            <div class="bg-white p-6 rounded-xl shadow border-l-8 border-yellow-600">
+                <h4 class="font-bold text-xl mb-4 text-yellow-800"><i class="fas fa-lightbulb mr-2"></i>8. Utility & Daily Needs</h4>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center border-b pb-2">
+                        <span class="text-gray-700"><b>Electricity Bill:</b> UPPCL Payment/Check</span>
+                        <a href="https://consumer.uppcl.org/wss/pay_bill_home" target="_blank" class="text-blue-600 font-bold underline hover:text-blue-800">Check</a>
+                    </div>
+                    <div class="flex justify-between items-center border-b pb-2">
+                        <span class="text-gray-700"><b>Gas Connection:</b> HP/Indane/Bharat</span>
+                        <a href="https://pmuy.gov.in/mylpg.html" target="_blank" class="text-blue-600 font-bold underline hover:text-blue-800">Book</a>
+                    </div>
+                    <div class="flex justify-between items-center border-b pb-2">
+                        <span class="text-gray-700"><b>PAN-Aadhaar Link:</b> Check Link Status</span>
+                        <a href="https://eportal.incometax.gov.in/iec/foservices/#/pre-login/link-aadhaar-status" target="_blank" class="text-blue-600 font-bold underline hover:text-blue-800">Link Now</a>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-700"><b>ITR Filing:</b> Income Tax Return E-Filing</span>
+                        <a href="https://eportal.incometax.gov.in/" target="_blank" class="text-blue-600 font-bold underline hover:text-blue-800">File ITR</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 9: Local UP Services -->
+        <h3 id="up-local" class="text-2xl font-bold mb-6 border-l-4 border-rose-600 pl-3 text-gray-800">9. Local UP Services (Ghatampur Special)</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="service-card bg-orange-50 p-6 rounded-xl border border-orange-200">
+                <i class="fas fa-map-marked-alt text-3xl text-orange-600 mb-4"></i>
+                <h4 class="font-bold text-lg text-gray-800">Bhulekh (Khatauni)</h4>
+                <p class="text-sm text-gray-600 mb-4">View land records and Khasra/Khatauni documents online.</p>
+                <a href="https://upbhulekh.gov.in/" target="_blank" class="inline-block bg-orange-600 text-white px-4 py-2 rounded text-sm font-bold hover:bg-orange-700">View Land Record</a>
+            </div>
+            <div class="service-card bg-blue-50 p-6 rounded-xl border border-blue-200">
+                <i class="fas fa-headset text-3xl text-blue-600 mb-4"></i>
+                <h4 class="font-bold text-lg text-gray-800">Jansunwai (IGRS)</h4>
+                <p class="text-sm text-gray-600 mb-4">Official portal to register and track any government complaint online.</p>
+                <a href="https://jansunwai.up.nic.in/" target="_blank" class="inline-block bg-blue-600 text-white px-4 py-2 rounded text-sm font-bold hover:bg-blue-700">Register Complaint</a>
+            </div>
+            <div class="service-card bg-pink-50 p-6 rounded-xl border border-pink-200">
+                <i class="fas fa-users text-3xl text-pink-600 mb-4"></i>
+                <h4 class="font-bold text-lg text-gray-800">Marriage Registration</h4>
+                <p class="text-sm text-gray-600 mb-4">Apply for marriage registration and download your certificate.</p>
+                <a href="https://igrsup.gov.in/igrsup/userMarriageRegistration" target="_blank" class="inline-block bg-pink-600 text-white px-4 py-2 rounded text-sm font-bold hover:bg-pink-700">Apply Now</a>
+            </div>
+        </div>
+
+        <!-- NEW SECTION 10: Healthcare & Medical Services -->
+        <h3 id="healthcare" class="text-2xl font-bold mb-6 border-l-4 border-pink-500 pl-3 text-gray-800">10. Healthcare & Medical Services</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-pink-500">
+                <i class="fas fa-heartbeat text-3xl text-pink-500 mb-4"></i>
+                <h4 class="font-bold text-gray-800">Ayushman Bharat</h4>
+                <p class="text-xs text-gray-500 mb-4">Health insurance card for ₹5 Lakh free treatment.</p>
+                <a href="https://pmjay.gov.in/" target="_blank" class="block text-center bg-pink-500 text-white py-2 rounded text-sm font-semibold hover:bg-pink-600">Apply PMJAY</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-pink-500">
+                <i class="fas fa-id-card-clip text-3xl text-pink-500 mb-4"></i>
+                <h4 class="font-bold text-gray-800">ABHA Health ID</h4>
+                <p class="text-xs text-gray-500 mb-4">Create your Ayushman Bharat Health Account digitally.</p>
+                <a href="https://abha.abdm.gov.in/" target="_blank" class="block text-center bg-pink-500 text-white py-2 rounded text-sm font-semibold hover:bg-pink-600">Create ABHA</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-pink-500">
+                <i class="fas fa-user-md text-3xl text-pink-500 mb-4"></i>
+                <h4 class="font-bold text-gray-800">eSanjeevani OPD</h4>
+                <p class="text-xs text-gray-500 mb-4">National teleconsultation service for doctor appointments.</p>
+                <a href="https://esanjeevani.mohfw.gov.in/" target="_blank" class="block text-center bg-pink-500 text-white py-2 rounded text-sm font-semibold hover:bg-pink-600">Consult Doctor</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-pink-500">
+                <i class="fas fa-tint text-3xl text-pink-500 mb-4"></i>
+                <h4 class="font-bold text-gray-800">eRaktKosh</h4>
+                <p class="text-xs text-gray-500 mb-4">Check live blood availability in nearby blood banks.</p>
+                <a href="https://eraktkosh.mohfw.gov.in/eraktkoshPortal/#/" target="_blank" class="block text-center bg-pink-500 text-white py-2 rounded text-sm font-semibold hover:bg-pink-600">Check Blood</a>
+            </div>
+        </div>
+
+        <!-- NEW SECTION 11: Legal & Police Records -->
+        <h3 id="legal" class="text-2xl font-bold mb-6 border-l-4 border-indigo-600 pl-3 text-gray-800">11. Legal, Police & Court Services</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-indigo-600">
+                <i class="fas fa-file-invoice text-3xl text-indigo-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">E-Challan Payment</h4>
+                <p class="text-xs text-gray-500 mb-4">Pay traffic fines and check pending vehicle challans.</p>
+                <a href="https://echallan.parivahan.gov.in/" target="_blank" class="block text-center bg-indigo-600 text-white py-2 rounded text-sm font-semibold hover:bg-indigo-700">Pay Challan</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-indigo-600">
+                <i class="fas fa-balance-scale text-3xl text-indigo-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">eCourts Services</h4>
+                <p class="text-xs text-gray-500 mb-4">Check court case status, cause lists, and judgements.</p>
+                <a href="https://services.ecourts.gov.in/" target="_blank" class="block text-center bg-indigo-600 text-white py-2 rounded text-sm font-semibold hover:bg-indigo-700">Check Case</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-indigo-600">
+                <i class="fas fa-shield-alt text-3xl text-indigo-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">Online FIR (CCTNS)</h4>
+                <p class="text-xs text-gray-500 mb-4">Register an e-FIR and verify police clearance certificates.</p>
+                <a href="https://cctnsup.gov.in/" target="_blank" class="block text-center bg-indigo-600 text-white py-2 rounded text-sm font-semibold hover:bg-indigo-700">UP Police Portal</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-indigo-600">
+                <i class="fas fa-info-circle text-3xl text-indigo-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">RTI Online</h4>
+                <p class="text-xs text-gray-500 mb-4">File Right to Information requests to central/state govt.</p>
+                <a href="https://rtionline.gov.in/" target="_blank" class="block text-center bg-indigo-600 text-white py-2 rounded text-sm font-semibold hover:bg-indigo-700">File RTI</a>
+            </div>
+        </div>
+
+        <!-- NEW SECTION 12: Travel & Passport Services -->
+        <h3 id="travel" class="text-2xl font-bold mb-6 border-l-4 border-teal-600 pl-3 text-gray-800">12. Travel & Passport Services</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-teal-600">
+                <i class="fas fa-passport text-3xl text-teal-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">Passport Seva</h4>
+                <p class="text-xs text-gray-500 mb-4">Apply for a fresh passport or passport renewal.</p>
+                <a href="https://www.passportindia.gov.in/" target="_blank" class="block text-center bg-teal-600 text-white py-2 rounded text-sm font-semibold hover:bg-teal-700">Passport Portal</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-teal-600">
+                <i class="fas fa-train text-3xl text-teal-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">IRCTC Booking</h4>
+                <p class="text-xs text-gray-500 mb-4">Book train tickets, check PNR status, and timetables.</p>
+                <a href="https://www.irctc.co.in/" target="_blank" class="block text-center bg-teal-600 text-white py-2 rounded text-sm font-semibold hover:bg-teal-700">IRCTC Portal</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-teal-600">
+                <i class="fas fa-plane text-3xl text-teal-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">Indian e-Visa</h4>
+                <p class="text-xs text-gray-500 mb-4">Official application portal for Indian tourist/medical visa.</p>
+                <a href="https://indianvisaonline.gov.in/" target="_blank" class="block text-center bg-teal-600 text-white py-2 rounded text-sm font-semibold hover:bg-teal-700">Apply e-Visa</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-teal-600">
+                <i class="fas fa-wheelchair text-3xl text-teal-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">Yatri Mitra Seva</h4>
+                <p class="text-xs text-gray-500 mb-4">Book wheelchair and porter services at railway stations.</p>
+                <a href="https://www.irctc.co.in/nget/enquiry/yatri-mitra" target="_blank" class="block text-center bg-teal-600 text-white py-2 rounded text-sm font-semibold hover:bg-teal-700">Book Yatri Mitra</a>
+            </div>
+        </div>
+
+        <!-- NEW SECTION 13: Housing & Property -->
+        <h3 id="housing" class="text-2xl font-bold mb-6 border-l-4 border-amber-600 pl-3 text-gray-800">13. Housing & Property Services</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-amber-600">
+                <i class="fas fa-home text-3xl text-amber-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">PM Awas Yojana</h4>
+                <p class="text-xs text-gray-500 mb-4">Apply for affordable housing schemes (Urban/Gramin).</p>
+                <a href="https://pmaymis.gov.in/" target="_blank" class="block text-center bg-amber-600 text-white py-2 rounded text-sm font-semibold hover:bg-amber-700">PMAY Portal</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-amber-600">
+                <i class="fas fa-building text-3xl text-amber-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">RERA UP</h4>
+                <p class="text-xs text-gray-500 mb-4">Check verified real estate projects and file complaints.</p>
+                <a href="https://www.up-rera.in/" target="_blank" class="block text-center bg-amber-600 text-white py-2 rounded text-sm font-semibold hover:bg-amber-700">RERA Portal</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-amber-600">
+                <i class="fas fa-stamp text-3xl text-amber-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">E-Stamp & Registration</h4>
+                <p class="text-xs text-gray-500 mb-4">Pay stamp duty and register property documents online.</p>
+                <a href="https://shcilestamp.com/" target="_blank" class="block text-center bg-amber-600 text-white py-2 rounded text-sm font-semibold hover:bg-amber-700">E-Stamping</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-amber-600">
+                <i class="fas fa-file-invoice-dollar text-3xl text-amber-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">Property Tax</h4>
+                <p class="text-xs text-gray-500 mb-4">Pay municipal corporation house/property tax online.</p>
+                <a href="https://e-nagarsewaup.gov.in/" target="_blank" class="block text-center bg-amber-600 text-white py-2 rounded text-sm font-semibold hover:bg-amber-700">Pay Tax</a>
+            </div>
+        </div>
+
+        <!-- NEW SECTION 14: Women & Child Welfare -->
+        <h3 id="women-child" class="text-2xl font-bold mb-6 border-l-4 border-fuchsia-600 pl-3 text-gray-800">14. Women & Child Welfare</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-fuchsia-600">
+                <i class="fas fa-child text-3xl text-fuchsia-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">Sukanya Samriddhi</h4>
+                <p class="text-xs text-gray-500 mb-4">High-interest savings scheme for girl child education.</p>
+                <a href="https://www.nsiindia.gov.in/(S(5imnpju3yrzbth550ucpaoey))/InternalPage.aspx?Id_Pk=89" target="_blank" class="block text-center bg-fuchsia-600 text-white py-2 rounded text-sm font-semibold hover:bg-fuchsia-700">Scheme Info</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-fuchsia-600">
+                <i class="fas fa-baby text-3xl text-fuchsia-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">PM Matru Vandana</h4>
+                <p class="text-xs text-gray-500 mb-4">Maternity benefit program providing cash assistance.</p>
+                <a href="https://pmmvy.wcd.gov.in/" target="_blank" class="block text-center bg-fuchsia-600 text-white py-2 rounded text-sm font-semibold hover:bg-fuchsia-700">PMMVY Portal</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-fuchsia-600">
+                <i class="fas fa-hands-holding-child text-3xl text-fuchsia-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">Poshan Tracker</h4>
+                <p class="text-xs text-gray-500 mb-4">Anganwadi services, nutrition tracking, and beneficiary data.</p>
+                <a href="https://poshantracker.in/" target="_blank" class="block text-center bg-fuchsia-600 text-white py-2 rounded text-sm font-semibold hover:bg-fuchsia-700">Tracker Portal</a>
+            </div>
+            <div class="service-card bg-white p-5 rounded-lg shadow border-t-4 border-fuchsia-600">
+                <i class="fas fa-female text-3xl text-fuchsia-600 mb-4"></i>
+                <h4 class="font-bold text-gray-800">Women Helpline</h4>
+                <p class="text-xs text-gray-500 mb-4">National helpline (181) and UP Police Women Power Line (1090).</p>
+                <a href="https://www.myscheme.gov.in/schemes/whl-181" target="_blank" class="block text-center bg-fuchsia-600 text-white py-2 rounded text-sm font-semibold hover:bg-fuchsia-700">Helpline Info</a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8 border-t-4 border-yellow-500">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <!-- About -->
+            <div>
+                <div class="flex items-center space-x-2 mb-4">
+                    <i class="fas fa-file-alt text-2xl text-yellow-400"></i>
+                    <h4 class="text-2xl font-black tracking-tighter">FORM<span class="text-yellow-400">SAHARA</span></h4>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed">The primary goal of Form Sahara is to provide easy access to all government schemes, application forms, and public services in simple language. We share only authentic, official government links for your digital safety.</p>
+            </div>
+            
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-xl font-bold mb-4 text-white">Quick Links</h4>
+                <ul class="text-gray-400 text-sm space-y-3">
+                    <li><a href="https://www.sarkariresult.com/" target="_blank" class="hover:text-yellow-400 transition"><i class="fas fa-angle-right mr-2"></i>Sarkari Result</a></li>
+                    <li><a href="https://digitallocker.gov.in/" target="_blank" class="hover:text-yellow-400 transition"><i class="fas fa-angle-right mr-2"></i>DigiLocker Portal</a></li>
+                    <li><a href="https://www.umang.gov.in/" target="_blank" class="hover:text-yellow-400 transition"><i class="fas fa-angle-right mr-2"></i>Umang App</a></li>
+                    <li><a href="https://www.india.gov.in/" target="_blank" class="hover:text-yellow-400 transition"><i class="fas fa-angle-right mr-2"></i>National Portal of India</a></li>
+                    <li><a href="https://www.mygov.in/" target="_blank" class="hover:text-yellow-400 transition"><i class="fas fa-angle-right mr-2"></i>MyGov Portal</a></li>
+                </ul>
+            </div>
+
+            <!-- Policies (New Column) -->
+            <div>
+                <h4 class="text-xl font-bold mb-4 text-white">Policies</h4>
+                <ul class="text-gray-400 text-sm space-y-3">
+                    <li><a href="privacy-policy.html" class="hover:text-yellow-400 transition"><i class="fas fa-shield-alt mr-2"></i>Privacy Policy</a></li>
+                    <li><a href="terms.html" class="hover:text-yellow-400 transition"><i class="fas fa-file-contract mr-2"></i>Terms & Conditions</a></li>
+                    <li><a href="refund-policy.html" class="hover:text-yellow-400 transition"><i class="fas fa-money-bill-wave mr-2"></i>Refund Policy</a></li>
+                    <li><a href="payment-billing.html" class="hover:text-yellow-400 transition"><i class="fas fa-credit-card mr-2"></i>Payment & Billing Policy</a></li>
+                    <li><a href="disclaimer.html" class="hover:text-yellow-400 transition"><i class="fas fa-exclamation-triangle mr-2"></i>Disclaimer Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Disclaimer -->
+            <div>
+                <h4 class="text-xl font-bold mb-4 text-white">Disclaimer</h4>
+                <p class="text-xs text-gray-300 italic bg-gray-800 p-4 rounded-lg border border-gray-700 leading-relaxed">
+                    <i class="fas fa-exclamation-triangle text-yellow-500 mr-1"></i> "Form Sahara" is a private informational portal. We are not affiliated with the Government of India or any state government department. Please read the official notifications on the respective government websites carefully before submitting any personal data.
+                </p>
+            </div>
+        </div>
+
+        <!-- Copyright & Social Media Line -->
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center border-t border-gray-800 pt-6 mt-4 text-gray-500 text-sm font-medium">
+            <div class="mb-4 md:mb-0 text-center md:text-left">
+                &copy; 2026 Form Sahara. All Rights Reserved. Designed & Developed by Novaplexes. Made in India.
+            </div>
+            <div class="flex space-x-4">
+                <a href="https://www.facebook.com/share/1FnnCmwn3w/" aria-label="Facebook" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-blue-600 hover:text-white transition shadow-lg"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-sky-500 hover:text-white transition shadow-lg"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/formsahara?igsh=YTh3bGM0YnFta3pu" aria-label="Instagram" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-pink-600 hover:text-white transition shadow-lg"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-red-600 hover:text-white transition shadow-lg"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Search/Filter Logic -->
+    <script>
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            let filter = this.value.toUpperCase();
+            let cards = document.querySelectorAll('.service-card');
+            
+            cards.forEach(card => {
+                let text = card.innerText.toUpperCase();
+                // Check if the search term exists in the card text
+                if (text.includes(filter)) {
+                    card.style.display = "";
+                    card.classList.add('fade-in');
+                } else {
+                    card.style.display = "none";
+                    card.classList.remove('fade-in');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
