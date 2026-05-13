@@ -12,6 +12,9 @@
         html { scroll-behavior: smooth; }
         .about-card { transition: all 0.3s ease; }
         .about-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
+        
+        /* Mobile Menu Toggle Helper */
+        #mobile-menu.hidden { display: none; }
     </style>
 </head>
 <body class="bg-slate-50 font-sans text-gray-800">
@@ -24,19 +27,45 @@
     <!-- Navigation -->
     <nav class="bg-blue-800 p-4 text-white shadow-xl sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2 cursor-pointer" onclick="window.location.href='index.html'">
+            <!-- Logo Section -->
+            <div class="flex items-center space-x-2 cursor-pointer shrink-0" onclick="window.location.href='index.html'">
                 <i class="fas fa-file-alt text-2xl text-yellow-400"></i>
                 <h1 class="text-2xl font-black tracking-tighter">FORM<span class="text-yellow-400">SAHARA</span></h1>
             </div>
-            <div class="hidden xl:flex space-x-6 font-medium text-sm">
+
+            <!-- Desktop Links (Centered) -->
+            <div class="hidden xl:flex flex-grow justify-center space-x-6 font-medium text-sm">
                 <a href="index.html" class="hover:text-yellow-300">Home</a>
                 <a href="form-filling.html" class="hover:text-yellow-300">Fill My Form</a>
                 <a href="banking-cards.html" class="hover:text-yellow-300">Banking Services</a>
                 <a href="contact.html" class="hover:text-yellow-300">Contact Us</a>
                 <a href="#" class="text-yellow-400 font-bold border-b-2 border-yellow-400 pb-1">About Us</a>
+                <a href="help-desk.html" class="hover:text-yellow-300">Help Desk</a>
                 <a href="jobs-exams.html" class="hover:text-yellow-300 text-yellow-400 font-bold underline">Latest Jobs</a>
             </div>
-            <button onclick="window.location.href='help-desk.html'" class="bg-yellow-500 text-blue-900 px-4 py-2 rounded font-bold hover:bg-yellow-400 transition">Help Desk</button>
+
+            <!-- Spacer for Desktop Alignment / Hamburger for Mobile -->
+            <div class="xl:hidden">
+                <button id="menu-toggle" class="text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <!-- Hidden empty div to balance the logo on desktop for perfect centering -->
+            <div class="hidden xl:block w-[180px]"></div>
+        </div>
+
+        <!-- Mobile Menu (3 Dot/Line Content) -->
+        <div id="mobile-menu" class="hidden xl:hidden bg-blue-900 mt-4 rounded-lg p-4 transition-all duration-300">
+            <div class="flex flex-col space-y-4 font-medium text-sm">
+                <a href="index.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Home</a>
+                <a href="form-filling.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Fill My Form</a>
+                <a href="banking-cards.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Banking Services</a>
+                <a href="contact.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Contact Us</a>
+                <a href="#" class="text-yellow-400 font-bold border-b border-yellow-400 pb-2">About Us</a>
+                <a href="help-desk.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Help Desk</a>
+                <a href="jobs-exams.html" class="text-yellow-400 font-bold underline pb-2">Latest Jobs</a>
+            </div>
         </div>
     </nav>
 
@@ -224,7 +253,7 @@
                 </ul>
             </div>
 
-            <!-- Policies (New Column) -->
+            <!-- Policies -->
             <div>
                 <h4 class="text-xl font-bold mb-4 text-white">Policies</h4>
                 <ul class="text-gray-400 text-sm space-y-3">
@@ -258,6 +287,16 @@
             </div>
         </div>
     </footer>
+
+    <!-- Script for Hamburger Menu -->
+    <script>
+        const btn = document.getElementById('menu-toggle');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
 
 </body>
 </html>
