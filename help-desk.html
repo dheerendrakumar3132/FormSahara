@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Help Desk & Support | Form Sahara</title>
      <!-- Favicon -->
-<link rel="icon" href="form-sahara-logo" type="image/jpeg" sizes="1056x1056">
+<link rel="icon" href="form-sahara-logo.jpeg" type="image/jpeg" sizes="1056x1056">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -14,6 +14,10 @@
         .help-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); border-color: #3b82f6; }
         .input-field { transition: all 0.3s ease; }
         .input-field:focus { box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); border-color: #3b82f6; outline: none; }
+        
+        /* Mobile Menu Logic */
+        #mobile-menu { transition: max-height 0.3s ease-in-out; max-height: 0; overflow: hidden; }
+        #mobile-menu.open { max-height: 500px; }
     </style>
 </head>
 <body class="bg-slate-50 font-sans text-gray-800">
@@ -26,19 +30,46 @@
     <!-- Navigation -->
     <nav class="bg-blue-800 p-4 text-white shadow-xl sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2 cursor-pointer" onclick="window.location.href='index.html'">
+            <!-- Logo (Left) -->
+            <div class="flex items-center space-x-2 cursor-pointer shrink-0" onclick="window.location.href='index.html'">
                 <i class="fas fa-file-alt text-2xl text-yellow-400"></i>
                 <h1 class="text-2xl font-black tracking-tighter">FORM<span class="text-yellow-400">SAHARA</span></h1>
             </div>
-            <div class="hidden xl:flex space-x-6 font-medium text-sm items-center">
+
+            <!-- Desktop Menu (Centered) -->
+            <div class="hidden xl:flex flex-grow justify-center space-x-6 font-medium text-sm items-center">
                 <a href="index.html" class="hover:text-yellow-300">Home</a>
                 <a href="form-filling.html" class="hover:text-yellow-300">Fill My Form</a>
                 <a href="banking-cards.html" class="hover:text-yellow-300">Banking Services</a>
                 <a href="contact.html" class="hover:text-yellow-300">Contact Us</a>
                 <a href="about.html" class="hover:text-yellow-300">About Us</a>
-                <a href="help-desk.html" class="hover:text-yellow-300">Help Desk</a>
+                <a href="#" class="text-yellow-400 font-bold border-b-2 border-yellow-400 pb-1">Help Desk</a>
                 <a href="jobs-exams.html" class="hover:text-yellow-300 text-yellow-400 font-bold underline">Latest Jobs</a>
             </div>
+
+            <!-- Mobile Menu Toggle -->
+            <div class="xl:hidden">
+                <button id="menu-btn" class="text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Spacer for Desktop Alignment -->
+            <div class="hidden xl:block w-[180px]"></div>
+        </div>
+
+        <!-- Mobile Menu (Dropdown) -->
+        <div id="mobile-menu" class="xl:hidden bg-blue-900 mt-4 rounded-lg overflow-hidden">
+            <div class="flex flex-col p-4 space-y-4 text-sm font-medium">
+                <a href="index.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Home</a>
+                <a href="form-filling.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Fill My Form</a>
+                <a href="banking-cards.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Banking Services</a>
+                <a href="contact.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Contact Us</a>
+                <a href="about.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">About Us</a>
+                <a href="#" class="text-yellow-400 font-bold border-b border-blue-700 pb-2">Help Desk</a>
+                <a href="jobs-exams.html" class="text-yellow-400 font-bold underline">Latest Jobs</a>
+            </div>
+        </div>
     </nav>
 
     <!-- Help Desk Hero Section -->
@@ -262,19 +293,16 @@
             <h2 class="text-3xl font-bold text-gray-900 mb-8 border-l-4 border-blue-600 pl-4">Technical Troubleshooting FAQ</h2>
             
             <div class="space-y-4">
-                <!-- FAQ Item 1 -->
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
                     <h4 class="font-bold text-gray-900 text-lg mb-2">1. "The official government website is not loading."</h4>
                     <p class="text-gray-600 text-sm leading-relaxed">Government servers (like SSC, UP Police, or UIDAI) often face heavy traffic during form submission deadlines. If a link provided by Form Sahara is not opening, please try accessing the site late at night or early morning when server loads are lower. If it's broken permanently, raise a ticket above.</p>
                 </div>
                 
-                <!-- FAQ Item 2 -->
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
                     <h4 class="font-bold text-gray-900 text-lg mb-2">2. "My photo/signature size is too large to upload."</h4>
                     <p class="text-gray-600 text-sm leading-relaxed">Most government forms require photos under 50KB and signatures under 20KB. You can use free online image resizers or MS Paint on your computer to reduce the dimensions and file size before uploading.</p>
                 </div>
 
-                <!-- FAQ Item 3 -->
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
                     <h4 class="font-bold text-gray-900 text-lg mb-2">3. "Payment deducted but application status shows 'Pending'."</h4>
                     <p class="text-gray-600 text-sm leading-relaxed">This is a common bank gateway sync issue. Do <strong>not</strong> make the payment again immediately. Wait for 24-48 hours for the banking gateway to update the merchant (the government site). Keep your transaction ID/reference number safe.</p>
@@ -308,7 +336,7 @@
                 </ul>
             </div>
 
-            <!-- Policies (New Column) -->
+            <!-- Policies -->
             <div>
                 <h4 class="text-xl font-bold mb-4 text-white">Policies</h4>
                 <ul class="text-gray-400 text-sm space-y-3">
@@ -343,8 +371,19 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT FOR EMAIL SUBMISSION & TICKET GENERATION -->
+    <!-- JAVASCRIPT FOR MOBILE MENU & FORM -->
     <script>
+        // Hamburger Menu Toggle Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
         document.getElementById('helpdeskForm').addEventListener('submit', function(e) {
             e.preventDefault(); 
             
@@ -354,20 +393,16 @@
             const displayTicketId = document.getElementById('displayTicketId');
             const hiddenTicketId = document.getElementById('hiddenTicketId');
             
-            // Generate Random Support Ticket ID (e.g., FS-48291054)
             const randomID = Math.floor(10000000 + Math.random() * 90000000);
             const ticketID = 'FS-' + randomID;
             
-            // Set Ticket ID in hidden input (to be sent via email) and display span
             hiddenTicketId.value = ticketID;
             displayTicketId.innerText = ticketID;
 
-            // Show loading state
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Generating Ticket...';
             submitBtn.disabled = true;
             submitBtn.classList.add('opacity-70');
 
-            // Send data using fetch to FormSubmit
             fetch(form.action, {
                 method: form.method,
                 body: new FormData(form)
@@ -375,9 +410,9 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success || data.success === "true") {
-                    form.reset(); // Clear form fields
-                    successMsg.classList.remove('hidden'); // Show success message with Ticket ID
-                    form.classList.add('hidden'); // Hide the form completely
+                    form.reset(); 
+                    successMsg.classList.remove('hidden'); 
+                    form.classList.add('hidden'); 
                 } else {
                     alert('Something went wrong! Please try again later.');
                 }
@@ -386,7 +421,6 @@
                 alert('Error submitting form! Check your internet connection.');
             })
             .finally(() => {
-                // Restore button state
                 submitBtn.innerHTML = '<i class="fas fa-ticket-alt mr-2"></i> Generate Support Ticket';
                 submitBtn.disabled = false;
                 submitBtn.classList.remove('opacity-70');
