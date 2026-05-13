@@ -12,6 +12,9 @@
         html { scroll-behavior: smooth; }
         .input-field { transition: all 0.3s ease; }
         .input-field:focus { box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); border-color: #3b82f6; outline: none; }
+        /* Mobile menu transition */
+        #mobile-menu { transition: max-height 0.3s ease-in-out; max-height: 0; overflow: hidden; }
+        #mobile-menu.open { max-height: 500px; }
     </style>
 </head>
 <body class="bg-slate-50 font-sans text-gray-800">
@@ -24,44 +27,44 @@
     <!-- Navigation -->
     <nav class="bg-blue-800 p-4 text-white shadow-xl sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
-            <!-- Logo Section -->
+            <!-- Logo (Left) -->
             <div class="flex items-center space-x-2 cursor-pointer shrink-0" onclick="window.location.href='index.html'">
                 <i class="fas fa-file-alt text-2xl text-yellow-400"></i>
                 <h1 class="text-2xl font-black tracking-tighter">FORM<span class="text-yellow-400">SAHARA</span></h1>
             </div>
 
-            <!-- Desktop Links (Centered) -->
+            <!-- Desktop Menu (Centered) -->
             <div class="hidden xl:flex flex-grow justify-center space-x-6 font-medium text-sm">
                 <a href="index.html" class="hover:text-yellow-300">Home</a>
                 <a href="form-filling.html" class="hover:text-yellow-300">Fill My Form</a>
-                <a href="banking-cards.html" class="hover:text-yellow-300">Banking Services</a>
+                <a href="banking-cards.html" class="hover:text-yellow-300">Banking Cards</a>
                 <a href="#" class="text-yellow-400 font-bold border-b-2 border-yellow-400 pb-1">Contact Us</a>
                 <a href="about.html" class="hover:text-yellow-300">About Us</a>
                 <a href="help-desk.html" class="hover:text-yellow-300">Help Desk</a>
                 <a href="jobs-exams.html" class="hover:text-yellow-300 text-yellow-400 font-bold underline">Latest Jobs</a>
             </div>
 
-            <!-- Spacer for Desktop Alignment / Hamburger for Mobile -->
+            <!-- Hamburger Icon (Mobile) -->
             <div class="xl:hidden">
-                <button id="menu-toggle" class="text-2xl focus:outline-none">
+                <button id="menu-btn" class="text-2xl focus:outline-none">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
             
-            <!-- Hidden empty div to balance the logo on desktop for perfect centering -->
+            <!-- Spacer for Desktop Alignment -->
             <div class="hidden xl:block w-[180px]"></div>
         </div>
 
-        <!-- Mobile Menu (3 Dot/Line Content) -->
-        <div id="mobile-menu" class="hidden xl:hidden bg-blue-900 mt-4 rounded-lg p-4 transition-all duration-300">
-            <div class="flex flex-col space-y-4 font-medium text-sm">
+        <!-- Mobile Menu (Dropdown) -->
+        <div id="mobile-menu" class="xl:hidden bg-blue-900 mt-4 rounded-lg">
+            <div class="flex flex-col space-y-4 p-4 font-medium text-sm text-center">
                 <a href="index.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Home</a>
                 <a href="form-filling.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Fill My Form</a>
-                <a href="banking-cards.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Banking Services</a>
-                <a href="#" class="text-yellow-400 font-bold border-b border-yellow-400 pb-2">Contact Us</a>
-                <a href="about.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">About Us</a>
+                <a href="banking-cards.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Banking Cards</a>
+                <a href="#" class="text-yellow-400 font-bold">Contact Us</a>
+                <a href="about.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2 pt-2">About Us</a>
                 <a href="help-desk.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Help Desk</a>
-                <a href="jobs-exams.html" class="text-yellow-400 font-bold underline pb-2">Latest Jobs</a>
+                <a href="jobs-exams.html" class="text-yellow-400 font-bold underline">Latest Jobs</a>
             </div>
         </div>
     </nav>
@@ -470,10 +473,10 @@
                     <h4 class="font-bold text-blue-800 text-lg mb-2"><i class="fas fa-question-circle mr-2 text-yellow-500"></i> Does Form Sahara charge any fees?</h4>
                     <p class="text-gray-600 text-sm leading-relaxed">No. Form Sahara is a 100% free informational directory. We do not charge citizens for accessing links. Any payment required for a government service is paid directly on the official government website.</p>
                 </div>
-                <!-- FAQ 2 (Updated for Form Filling Service) -->
+                <!-- FAQ 2 -->
 <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition">
     <h4 class="font-bold text-blue-800 text-lg mb-2"><i class="fas fa-question-circle mr-2 text-yellow-500"></i> Can you fill out my form for me?</h4>
-    <p class="text-gray-600 text-sm leading-relaxed"><strong>Yes, absolutely!</strong> We provide a premium online form-filling service. Our experts can fill out government, scholarship, admission, and job application forms on your behalf for a nominal processing fee. Simply reach out to us on WhatsApp with your details, and we will handle the rest—including document resizing and error-free submission.</p>
+    <p class="text-gray-600 text-sm leading-relaxed"><strong>Yes, absolutely!</strong> We provide a premium online form-filling service. Our experts can fill out government, scholarship, admission, and job application forms on your behalf for a nominal processing fee. Simply reach out to us on WhatsApp with your details, and we will handle the rest.</p>
 </div>
                 <!-- FAQ 3 -->
                 <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition">
@@ -514,7 +517,7 @@
                 </ul>
             </div>
 
-            <!-- Policies (New Column) -->
+            <!-- Policies -->
             <div>
                 <h4 class="text-xl font-bold mb-4 text-white">Policies</h4>
                 <ul class="text-gray-400 text-sm space-y-3">
@@ -530,7 +533,7 @@
             <div>
                 <h4 class="text-xl font-bold mb-4 text-white">Disclaimer</h4>
                 <p class="text-xs text-gray-300 italic bg-gray-800 p-4 rounded-lg border border-gray-700 leading-relaxed">
-                    <i class="fas fa-exclamation-triangle text-yellow-500 mr-1"></i> "Form Sahara" is a private informational portal. We are not affiliated with the Government of India or any state government department. Please read the official notifications on the respective government websites carefully before submitting any personal data.
+                    <i class="fas fa-exclamation-triangle text-yellow-500 mr-1"></i> "Form Sahara" is a private informational portal. We are not affiliated with the Government of India or any state government department.
                 </p>
             </div>
         </div>
@@ -549,21 +552,29 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT FOR EMAIL SUBMISSION (AJAX) -->
+    <!-- JAVASCRIPT FOR MOBILE MENU & FORM -->
     <script>
+        // Hamburger Menu Toggle Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Email Submission Logic
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault(); 
-            
             const form = e.target;
             const submitBtn = document.getElementById('submitBtn');
             const successMsg = document.getElementById('successMessage');
             
-            // Show loading state
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
             submitBtn.disabled = true;
-            submitBtn.classList.add('opacity-70');
 
-            // Send data using fetch
             fetch(form.action, {
                 method: form.method,
                 body: new FormData(form)
@@ -571,9 +582,9 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success || data.success === "true") {
-                    form.reset(); // Clear form fields
-                    successMsg.classList.remove('hidden'); // Show success message
-                    form.classList.add('hidden'); // Hide the form completely
+                    form.reset();
+                    successMsg.classList.remove('hidden');
+                    form.classList.add('hidden');
                 } else {
                     alert('Something went wrong! Please try again later.');
                 }
@@ -582,10 +593,8 @@
                 alert('Error submitting form! Check your internet connection.');
             })
             .finally(() => {
-                // Restore button state
                 submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Submit Inquiry';
                 submitBtn.disabled = false;
-                submitBtn.classList.remove('opacity-70');
             });
         });
     </script>
