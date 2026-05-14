@@ -14,6 +14,10 @@
         .policy-content p { color: #4b5563; line-height: 1.75; margin-bottom: 1rem; }
         .policy-content ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1.5rem; color: #4b5563; }
         .policy-content li { margin-bottom: 0.5rem; }
+
+        /* Mobile Menu Logic */
+        #mobile-menu { transition: max-height 0.3s ease-in-out; max-height: 0; overflow: hidden; }
+        #mobile-menu.open { max-height: 500px; }
     </style>
 </head>
 <body class="bg-slate-50 font-sans text-gray-800">
@@ -27,13 +31,13 @@
     <nav class="bg-blue-800 p-4 text-white shadow-xl sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
             <!-- Logo (Left) -->
-            <div class="flex items-center space-x-2 shrink-0">
+            <div class="flex items-center space-x-2 cursor-pointer shrink-0" onclick="window.location.href='index.html'">
                 <i class="fas fa-file-alt text-2xl text-yellow-400"></i>
                 <h1 class="text-2xl font-black tracking-tighter">FORM<span class="text-yellow-400">SAHARA</span></h1>
             </div>
 
-            <!-- Links (Middle - Desktop) -->
-            <div class="hidden xl:flex flex-grow justify-center space-x-6 font-medium text-sm">
+            <!-- Desktop Menu (Centered) -->
+            <div class="hidden xl:flex flex-grow justify-center space-x-6 font-medium text-sm items-center">
                 <a href="index.html" class="hover:text-yellow-300">Home</a>
                 <a href="form-filling.html" class="hover:text-yellow-300">Fill My Form</a>
                 <a href="banking-cards.html" class="hover:text-yellow-300">Banking Services</a>
@@ -43,20 +47,20 @@
                 <a href="jobs-exams.html" class="hover:text-yellow-300 text-yellow-400 font-bold underline">Latest Jobs</a>
             </div>
 
-            <!-- Right Spacer for Desktop Centering Balance -->
-            <div class="hidden xl:block w-[180px]"></div>
-
-            <!-- Hamburger Button (Mobile) -->
+            <!-- Mobile Menu Toggle (Hamburger) -->
             <div class="xl:hidden">
                 <button id="menu-btn" class="text-2xl focus:outline-none">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
+
+            <!-- Spacer for Desktop Alignment -->
+            <div class="hidden xl:block w-[180px]"></div>
         </div>
 
         <!-- Mobile Menu (Dropdown) -->
-        <div id="mobile-menu" class="xl:hidden bg-blue-900 mt-4 rounded-lg overflow-hidden">
-            <div class="flex flex-col p-4 space-y-4 text-sm font-medium">
+        <div id="mobile-menu" class="xl:hidden bg-blue-900 mt-4 rounded-lg">
+            <div class="flex flex-col space-y-4 p-4 font-medium text-sm text-center">
                 <a href="index.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Home</a>
                 <a href="form-filling.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Fill My Form</a>
                 <a href="banking-cards.html" class="hover:text-yellow-300 border-b border-blue-700 pb-2">Banking Services</a>
@@ -155,7 +159,7 @@
                 </ul>
             </div>
 
-            <!-- Policies (New Column) -->
+            <!-- Policies -->
             <div>
                 <h4 class="text-xl font-bold mb-4 text-white">Policies</h4>
                 <ul class="text-gray-400 text-sm space-y-3">
@@ -189,6 +193,19 @@
             </div>
         </div>
     </footer>
+
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+    </script>
 
 </body>
 </html>
