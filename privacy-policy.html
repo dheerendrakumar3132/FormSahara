@@ -208,5 +208,122 @@
         });
     </script>
 
+    <!-- ========================================== -->
+    <!-- 1. POPUP KA HTML CODE (UPDATED WITH COUNTRY CODE & 10 DIGIT LIMIT) -->
+    <!-- ========================================== -->
+    <div id="leadPopup" class="fixed inset-0 bg-gray-900 bg-opacity-75 z-[9999] hidden flex items-center justify-center backdrop-blur-sm transition-opacity">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4 transform transition-all relative border-t-8 border-yellow-500">
+            
+            <!-- Close Button -->
+            <button id="closePopup" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl">&times;</button>
+            
+            <div class="text-center mb-6">
+                <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-lock text-2xl text-blue-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Almost There!</h3>
+                <p class="text-gray-500 text-sm">Please enter your details to proceed to the official website securely.</p>
+            </div>
+
+            <form id="leadForm" class="space-y-4">
+                <input type="hidden" id="targetUrl" name="targetUrl">
+                <input type="hidden" id="serviceClicked" name="Service_Clicked">
+                
+                <!-- Name Field -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Full Name</label>
+                    <input type="text" id="leadName" name="Name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+                
+                <!-- Mobile Field with Country Code -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">WhatsApp Number</label>
+                    <div class="flex">
+                        <select id="leadCountryCode" class="w-24 px-2 py-3 rounded-l-lg border border-r-0 border-gray-300 bg-gray-200 text-gray-700 font-bold focus:outline-none">
+                            <option value="+1">US (+1)</option>
+                            <option value="+44">UK (+44)</option>
+                            <option value="+91" selected>IN (+91)</option>
+                            <option value="+971">AE (+971)</option>
+                            <option value="+977">NP (+977)</option>
+                        </select>
+                        <!-- oninput & maxlength restricts it to exactly 10 numeric digits -->
+                        <input type="tel" id="leadMobile" required maxlength="10" pattern="[0-9]{10}" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="10-digit number" class="w-full px-4 py-3 rounded-r-lg border border-gray-300 bg-gray-50 text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+                </div>
+                
+                <button type="submit" id="leadSubmitBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md flex justify-center items-center">
+                    Proceed to Website <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 2. JAVASCRIPT CODE (UPDATED TO COMBINE COUNTRY CODE & MOBILE) -->
+    <!-- ========================================== -->
+    <script>
+        const popup = document.getElementById('leadPopup');
+        const leadForm = document.getElementById('leadForm');
+        const targetUrlInput = document.getElementById('targetUrl');
+        const serviceClickedInput = document.getElementById('serviceClicked');
+        const closePopupBtn = document.getElementById('closePopup');
+        
+        // Google Apps Script Web App URL
+        const googleAppScriptURL = 'https://script.google.com/macros/s/AKfycbwqo-1Zl19Luk6vrE74Pwk3AdzHVMElfGBBDc_RfYUPS3ZmIeJheCbuT6nLL32plzdz/exec';
+
+        // Sabhi external links ko pakadna (jinme target="_blank" hai)
+        const officialLinks = document.querySelectorAll('a[target="_blank"]');
+        
+        officialLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                
+                targetUrlInput.value = this.href;
+                serviceClickedInput.value = this.innerText || "Image/Icon Clicked";
+                popup.classList.remove('hidden');
+            });
+        });
+
+        // Close button logic
+        closePopupBtn.addEventListener('click', () => {
+            popup.classList.add('hidden');
+        });
+
+        // Form Submit hone par Google Sheet me data bhejna
+        leadForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('leadSubmitBtn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Redirecting...';
+            submitBtn.disabled = true;
+
+            // Form Data prepare karna
+            let formData = new FormData(leadForm);
+            
+            // Country Code aur 10-digit number ko jod kar ek column ('Mobile') me dalna
+            let countryCode = document.getElementById('leadCountryCode').value;
+            let mobileNumber = document.getElementById('leadMobile').value;
+            formData.set('Mobile', countryCode + ' ' + mobileNumber);
+
+            // Google Sheet par data bhejna
+            fetch(googleAppScriptURL, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                popup.classList.add('hidden');
+                window.open(targetUrlInput.value, '_blank'); 
+                leadForm.reset(); 
+            })
+            .catch(error => {
+                alert("Something went wrong, please try again.");
+            })
+            .finally(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+    </script>
 </body>
 </html>
