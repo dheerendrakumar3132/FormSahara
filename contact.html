@@ -566,51 +566,69 @@
         });
 
         // Email Submission Logic
-    <script>
-        // Hamburger Menu Toggle Logic
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+document.getElementById('contactForm').addEventListener('submit', function(e) {
 
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('open');
-            const icon = menuBtn.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        });
+            e.preventDefault(); 
 
-        // Email Submission Logic
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            const form = e.target;
-            const submitBtn = document.getElementById('submitBtn');
-            const successMsg = document.getElementById('successMessage');
-            
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
-            submitBtn.disabled = true;
+            const form = e.target;
 
-            fetch(form.action, {
-                method: form.method,
-                body: new FormData(form)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success || data.success === "true") {
-                    form.reset();
-                    successMsg.classList.remove('hidden');
-                    form.classList.add('hidden');
-                } else {
-                    alert('Something went wrong! Please try again later.');
-                }
-            })
-            .catch(error => {
-                alert('Error submitting form! Check your internet connection.');
-            })
-            .finally(() => {
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Submit Inquiry';
-                submitBtn.disabled = false;
-            });
-        });
-    </script>
+            const submitBtn = document.getElementById('submitBtn');
+
+            const successMsg = document.getElementById('successMessage');
+
+            
+
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+
+            submitBtn.disabled = true;
+
+
+
+            fetch(form.action, {
+
+                method: form.method,
+
+                body: new FormData(form)
+
+            })
+
+            .then(response => response.json())
+
+            .then(data => {
+
+                if (data.success || data.success === "true") {
+
+                    form.reset();
+
+                    successMsg.classList.remove('hidden');
+
+                    form.classList.add('hidden');
+
+                } else {
+
+                    alert('Something went wrong! Please try again later.');
+
+                }
+
+            })
+
+            .catch(error => {
+
+                alert('Error submitting form! Check your internet connection.');
+
+            })
+
+            .finally(() => {
+
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Submit Inquiry';
+
+                submitBtn.disabled = false;
+
+            });
+
+        });
+
+    </script>
 
     <!-- ========================================== -->
     <!-- 1. POPUP KA HTML CODE (UPDATED WITH COUNTRY CODE & 10 DIGIT LIMIT) -->
