@@ -358,28 +358,40 @@
         const serviceClickedInput = document.getElementById('serviceClicked');
         const closePopupBtn = document.getElementById('closePopup');
         
-        // Google Apps Script Web App URL
+        // ZAROORI: Yahan apni Google Sheet ka Web App URL hi rehne dein
         const googleAppScriptURL = 'https://script.google.com/macros/s/AKfycbwqo-1Zl19Luk6vrE74Pwk3AdzHVMElfGBBDc_RfYUPS3ZmIeJheCbuT6nLL32plzdz/exec';
 
-        // Sabhi external links ko pakadna (jinme target="_blank" hai)
+        // Sabhi external links ko target karna
         const officialLinks = document.querySelectorAll('a[target="_blank"]');
         
         officialLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                e.preventDefault(); 
+                // 👉 NAYA RULE: Agar link WhatsApp ka hai YA banking-cards.html hai, toh popup bypass kar do
+                if (this.href.includes('wa.me') || 
+                    this.href.includes('api.whatsapp.com') || 
+                    this.href.includes('banking-cards.html') || 
+                    this.classList.contains('whatsapp-float') || 
+                    this.querySelector('i.fab')) {
+                    return; // Yahan se system direct page khol dega, aage ka popup code nahi chalega
+                }
                 
+                e.preventDefault(); 
                 targetUrlInput.value = this.href;
-                serviceClickedInput.value = this.innerText || "Image/Icon Clicked";
+                
+                // Card ya button ka text nikal kar save karega
+                let linkText = this.innerText.trim() || "Official Link Clicked";
+                serviceClickedInput.value = linkText;
+                
                 popup.classList.remove('hidden');
             });
         });
 
-        // Close button logic
+        // Close button functionality
         closePopupBtn.addEventListener('click', () => {
             popup.classList.add('hidden');
         });
 
-        // Form Submit hone par Google Sheet me data bhejna
+        // Form Submit Logic
         leadForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -388,26 +400,37 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Redirecting...';
             submitBtn.disabled = true;
 
-            // Form Data prepare karna
-            let formData = new FormData(leadForm);
+            // Inputs se exact data nikalna
+            const nameValue = document.getElementById('leadName').value;
+            const countryCode = document.getElementById('leadCountryCode').value;
+            const mobileNumber = document.getElementById('leadMobile').value;
+            const serviceValue = serviceClickedInput.value;
             
-            // Country Code aur 10-digit number ko jod kar ek column ('Mobile') me dalna
-            let countryCode = document.getElementById('leadCountryCode').value;
-            let mobileNumber = document.getElementById('leadMobile').value;
-            formData.set('Mobile', countryCode + ' ' + mobileNumber);
+            // Country Code aur Mobile ko jodna
+            const fullMobileNumber = countryCode + " " + mobileNumber;
 
-            // Google Sheet par data bhejna
+            // URL Search Params banana
+            const searchParams = new URLSearchParams();
+            searchParams.append('Name', nameValue);
+            searchParams.append('Mobile', fullMobileNumber);
+            searchParams.append('Service_Clicked', serviceValue);
+
+            // Fetch request with 'no-cors' mode
             fetch(googleAppScriptURL, {
                 method: 'POST',
-                body: formData
+                mode: 'no-cors', 
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: searchParams.toString()
             })
-            .then(response => {
+            .then(() => {
                 popup.classList.add('hidden');
                 window.open(targetUrlInput.value, '_blank'); 
                 leadForm.reset(); 
             })
             .catch(error => {
-                alert("Something went wrong, please try again.");
+                alert("Connection error! Please try again.");
             })
             .finally(() => {
                 submitBtn.innerHTML = originalText;
