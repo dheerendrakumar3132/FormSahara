@@ -566,6 +566,19 @@
         });
 
         // Email Submission Logic
+        <script>
+        // Hamburger Menu Toggle Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Email Submission Logic (FIXED)
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault(); 
             const form = e.target;
@@ -577,6 +590,10 @@
 
             fetch(form.action, {
                 method: form.method,
+                // 👉 YEH LINE MISSING THI, AB ADD KAR DI GAYI HAI
+                headers: {
+                    'Accept': 'application/json'
+                },
                 body: new FormData(form)
             })
             .then(response => response.json())
@@ -590,6 +607,7 @@
                 }
             })
             .catch(error => {
+                console.error(error); // Error F12 console me dikhega
                 alert('Error submitting form! Check your internet connection.');
             })
             .finally(() => {
