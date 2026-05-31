@@ -566,56 +566,51 @@
         });
 
         // Email Submission Logic
-        <script>
-        // Hamburger Menu Toggle Logic
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+    <script>
+        // Hamburger Menu Toggle Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('open');
-            const icon = menuBtn.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        });
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
 
-        // Email Submission Logic (FIXED)
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            const form = e.target;
-            const submitBtn = document.getElementById('submitBtn');
-            const successMsg = document.getElementById('successMessage');
-            
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
-            submitBtn.disabled = true;
+        // Email Submission Logic
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            const form = e.target;
+            const submitBtn = document.getElementById('submitBtn');
+            const successMsg = document.getElementById('successMessage');
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+            submitBtn.disabled = true;
 
-            fetch(form.action, {
-                method: form.method,
-                // 👉 YEH LINE MISSING THI, AB ADD KAR DI GAYI HAI
-                headers: {
-                    'Accept': 'application/json'
-                },
-                body: new FormData(form)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success || data.success === "true") {
-                    form.reset();
-                    successMsg.classList.remove('hidden');
-                    form.classList.add('hidden');
-                } else {
-                    alert('Something went wrong! Please try again later.');
-                }
-            })
-            .catch(error => {
-                console.error(error); // Error F12 console me dikhega
-                alert('Error submitting form! Check your internet connection.');
-            })
-            .finally(() => {
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Submit Inquiry';
-                submitBtn.disabled = false;
-            });
-        });
-    </script>
+            fetch(form.action, {
+                method: form.method,
+                body: new FormData(form)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success || data.success === "true") {
+                    form.reset();
+                    successMsg.classList.remove('hidden');
+                    form.classList.add('hidden');
+                } else {
+                    alert('Something went wrong! Please try again later.');
+                }
+            })
+            .catch(error => {
+                alert('Error submitting form! Check your internet connection.');
+            })
+            .finally(() => {
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Submit Inquiry';
+                submitBtn.disabled = false;
+            });
+        });
+    </script>
 
     <!-- ========================================== -->
     <!-- 1. POPUP KA HTML CODE (UPDATED WITH COUNTRY CODE & 10 DIGIT LIMIT) -->
