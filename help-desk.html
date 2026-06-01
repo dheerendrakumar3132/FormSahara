@@ -371,7 +371,7 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT FOR MOBILE MENU & FORM -->
+<!-- JAVASCRIPT FOR MOBILE MENU & FORM -->
     <script>
         // Hamburger Menu Toggle Logic
         const menuBtn = document.getElementById('menu-btn');
@@ -384,7 +384,10 @@
             icon.classList.toggle('fa-times');
         });
 
-        document.getElementById('helpdeskForm').addEventListener('submit', function(e) {
+        // 🟢 HELP DESK GOOGLE SHEET LOGIC (With File Upload Support)
+        const helpDeskScriptURL = 'YAHAN_APNA_NAYA_GOOGLE_APP_SCRIPT_URL_PASTE_KAREIN';
+        
+        document.getElementById('helpdeskForm').addEventListener('submit', async function(e) {
             e.preventDefault(); 
             
             const form = e.target;
@@ -393,6 +396,7 @@
             const displayTicketId = document.getElementById('displayTicketId');
             const hiddenTicketId = document.getElementById('hiddenTicketId');
             
+            // Random Ticket ID Generate Karna
             const randomID = Math.floor(10000000 + Math.random() * 90000000);
             const ticketID = 'FS-' + randomID;
             
@@ -403,28 +407,73 @@
             submitBtn.disabled = true;
             submitBtn.classList.add('opacity-70');
 
-            fetch(form.action, {
-                method: form.method,
-                body: new FormData(form)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success || data.success === "true") {
+            // Country Code aur Phone ko jodna
+            const countryCode = form.querySelector('#countryCode').value;
+            const phone = form.querySelector('#phone').value;
+            
+            // File input check karna
+            const fileInput = document.getElementById('file-upload');
+            const file = fileInput.files[0];
+            
+            let requestBody = new URLSearchParams();
+            requestBody.append('Ticket ID', ticketID);
+            requestBody.append('Full Name', document.getElementById('name').value);
+            requestBody.append('Mobile Number', countryCode + ' ' + phone);
+            requestBody.append('Email Address', document.getElementById('email').value);
+            requestBody.append('Issue Category', document.getElementById('category').value);
+            requestBody.append('Subject', document.getElementById('subject').value);
+            requestBody.append('Detailed Description', document.getElementById('description').value);
+
+            // Agar user ne file upload ki hai, toh use Base64 me convert karke bhejenge
+            if (file) {
+                // File Size Check (2MB limit)
+                if (file.size > 2 * 1024 * 1024) {
+                    alert("File is too large! Please upload a file smaller than 2MB.");
+                    submitBtn.innerHTML = '<i class="fas fa-ticket-alt mr-2"></i> Generate Support Ticket';
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-70');
+                    return; // Yahin rok do
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const base64Data = e.target.result.split(',')[1];
+                    requestBody.append('fileContent', base64Data);
+                    requestBody.append('filename', file.name);
+                    requestBody.append('mimeType', file.type);
+                    
+                    sendData(requestBody); // Data bhejna
+                };
+                reader.readAsDataURL(file);
+            } else {
+                 // Bina file ke data bhejna
+                 sendData(requestBody);
+            }
+            
+            // Asli Fetch Request Function
+            function sendData(dataToSent) {
+                 fetch(helpDeskScriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Yahan no-cors theek chalega kyunki data URLSearchParams hai
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: dataToSent.toString()
+                })
+                .then(() => {
                     form.reset(); 
                     successMsg.classList.remove('hidden'); 
                     form.classList.add('hidden'); 
-                } else {
-                    alert('Something went wrong! Please try again later.');
-                }
-            })
-            .catch(error => {
-                alert('Error submitting form! Check your internet connection.');
-            })
-            .finally(() => {
-                submitBtn.innerHTML = '<i class="fas fa-ticket-alt mr-2"></i> Generate Support Ticket';
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('opacity-70');
-            });
+                })
+                .catch(error => {
+                    alert('Connection Error! Ticket could not be generated.');
+                })
+                .finally(() => {
+                    submitBtn.innerHTML = '<i class="fas fa-ticket-alt mr-2"></i> Generate Support Ticket';
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-70');
+                });
+            }
         });
     </script>
 
