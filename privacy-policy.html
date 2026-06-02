@@ -211,10 +211,9 @@
     <!-- ========================================== -->
     <!-- 1. POPUP KA HTML CODE (UPDATED WITH COUNTRY CODE & 10 DIGIT LIMIT) -->
     <!-- ========================================== -->
-    <div id="leadPopup" class="fixed inset-0 bg-gray-900 bg-opacity-75 z-[9999] hidden flex items-center justify-center backdrop-blur-sm transition-opacity">
+<div id="leadPopup" class="fixed inset-0 bg-gray-900 bg-opacity-75 z-[9999] hidden flex items-center justify-center backdrop-blur-sm transition-opacity">
         <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4 transform transition-all relative border-t-8 border-yellow-500">
             
-            <!-- Close Button -->
             <button id="closePopup" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl">&times;</button>
             
             <div class="text-center mb-6">
@@ -229,13 +228,11 @@
                 <input type="hidden" id="targetUrl" name="targetUrl">
                 <input type="hidden" id="serviceClicked" name="Service_Clicked">
                 
-                <!-- Name Field -->
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Full Name</label>
                     <input type="text" id="leadName" name="Name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none">
                 </div>
                 
-                <!-- Mobile Field with Country Code -->
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">WhatsApp Number</label>
                     <div class="flex">
@@ -246,7 +243,6 @@
                             <option value="+971">AE (+971)</option>
                             <option value="+977">NP (+977)</option>
                         </select>
-                        <!-- oninput & maxlength restricts it to exactly 10 numeric digits -->
                         <input type="tel" id="leadMobile" required maxlength="10" pattern="[0-9]{10}" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="10-digit number" class="w-full px-4 py-3 rounded-r-lg border border-gray-300 bg-gray-50 text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none">
                     </div>
                 </div>
@@ -258,72 +254,151 @@
         </div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- 2. JAVASCRIPT CODE (UPDATED TO COMBINE COUNTRY CODE & MOBILE) -->
-    <!-- ========================================== -->
     <script>
-        const popup = document.getElementById('leadPopup');
-        const leadForm = document.getElementById('leadForm');
-        const targetUrlInput = document.getElementById('targetUrl');
-        const serviceClickedInput = document.getElementById('serviceClicked');
-        const closePopupBtn = document.getElementById('closePopup');
-        
-        // Google Apps Script Web App URL
-        const googleAppScriptURL = 'https://script.google.com/macros/s/AKfycbwqo-1Zl19Luk6vrE74Pwk3AdzHVMElfGBBDc_RfYUPS3ZmIeJheCbuT6nLL32plzdz/exec';
+        // Check local scope to avoid global crashes
+        (function() {
+            console.log("Form Sahara Script Initialized...");
 
-        // Sabhi external links ko pakadna (jinme target="_blank" hai)
-        const officialLinks = document.querySelectorAll('a[target="_blank"]');
-        
-        officialLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault(); 
-                
-                targetUrlInput.value = this.href;
-                serviceClickedInput.value = this.innerText || "Image/Icon Clicked";
-                popup.classList.remove('hidden');
-            });
-        });
-
-        // Close button logic
-        closePopupBtn.addEventListener('click', () => {
-            popup.classList.add('hidden');
-        });
-
-        // Form Submit hone par Google Sheet me data bhejna
-        leadForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+            const popup = document.getElementById('leadPopup');
+            const leadForm = document.getElementById('leadForm');
+            const targetUrlInput = document.getElementById('targetUrl');
+            const serviceClickedInput = document.getElementById('serviceClicked');
+            const closePopupBtn = document.getElementById('closePopup');
             
-            const submitBtn = document.getElementById('leadSubmitBtn');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Redirecting...';
-            submitBtn.disabled = true;
+            const googleAppScriptURL = 'https://script.google.com/macros/s/AKfycbwqo-1Zl19Luk6vrE74Pwk3AdzHVMElfGBBDc_RfYUPS3ZmIeJheCbuT6nLL32plzdz/exec';
 
-            // Form Data prepare karna
-            let formData = new FormData(leadForm);
+            // Select all target blank links
+            const officialLinks = document.querySelectorAll('a[target="_blank"]');
+            console.log("Total target_blank links found: ", officialLinks.length);
             
-            // Country Code aur 10-digit number ko jod kar ek column ('Mobile') me dalna
-            let countryCode = document.getElementById('leadCountryCode').value;
-            let mobileNumber = document.getElementById('leadMobile').value;
-            formData.set('Mobile', countryCode + ' ' + mobileNumber);
-
-            // Google Sheet par data bhejna
-            fetch(googleAppScriptURL, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                popup.classList.add('hidden');
-                window.open(targetUrlInput.value, '_blank'); 
-                leadForm.reset(); 
-            })
-            .catch(error => {
-                alert("Something went wrong, please try again.");
-            })
-            .finally(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
+            officialLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Strict verification for bypass rules
+                    if (this.href.includes('wa.me') || 
+                        this.href.includes('api.whatsapp.com') || 
+                        this.href.includes('banking-cards.html') || 
+                        this.classList.contains('whatsapp-float')) {
+                        console.log("Bypassing popup for special link: ", this.href);
+                        return; 
+                    }
+                    
+                    e.preventDefault(); 
+                    targetUrlInput.value = this.href;
+                    
+                    let linkText = this.innerText.trim() || "Official Link Clicked";
+                    serviceClickedInput.value = linkText;
+                    
+                    console.log("Opening popup for: ", linkText, " -> Target: ", this.href);
+                    if(popup) popup.classList.remove('hidden');
+                });
             });
-        });
+
+            if(closePopupBtn) {
+                closePopupBtn.addEventListener('click', () => {
+                    popup.classList.add('hidden');
+                });
+            }
+
+            if(leadForm) {
+                leadForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log("Form submitted. Sending data to Google Sheets...");
+                    
+                    const submitBtn = document.getElementById('leadSubmitBtn');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Redirecting...';
+                    submitBtn.disabled = true;
+
+                    const nameValue = document.getElementById('leadName').value;
+                    const countryCode = document.getElementById('leadCountryCode').value;
+                    const mobileNumber = document.getElementById('leadMobile').value;
+                    const serviceValue = serviceClickedInput.value;
+                    const finalTargetUrl = targetUrlInput.value; 
+                    
+                    const fullMobileNumber = countryCode + " " + mobileNumber;
+
+                    const searchParams = new URLSearchParams();
+                    searchParams.append('Name', nameValue);
+                    searchParams.append('Mobile', fullMobileNumber);
+                    searchParams.append('Service_Clicked', serviceValue);
+
+                    fetch(googleAppScriptURL, {
+                        method: 'POST',
+                        mode: 'no-cors', 
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: searchParams.toString()
+                    })
+                    .then(() => {
+                        console.log("Data successfully queued to sheet. Launching Ad Overlay...");
+                        popup.classList.add('hidden');
+                        
+                        const whatsappMsg = encodeURIComponent(`Hello Form Sahara, My name is ${nameValue}. I need help filling out the ${serviceValue} form. Please assist me.`);
+                        const whatsappLink = `https://wa.me/919140092735?text=${whatsappMsg}`;
+
+                        const adOverlay = document.createElement('div');
+                        adOverlay.className = "fixed inset-0 bg-gray-900 bg-opacity-85 z-[99999] flex items-center justify-center backdrop-blur-md transition-all";
+                        adOverlay.id = "adOverlayBox";
+                        
+                        adOverlay.innerHTML = `
+                            <div class="bg-gradient-to-br from-blue-900 to-indigo-950 rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4 text-center border-2 border-yellow-400 relative text-white">
+                                <div class="bg-yellow-400 text-blue-950 font-black text-xs px-3 py-1 rounded-full uppercase tracking-wider absolute -top-3 left-1/2 transform -translate-x-1/2 shadow-md animate-bounce">
+                                    Premium Support
+                                </div>
+                                
+                                <h3 class="text-2xl font-black mb-3 text-yellow-300 tracking-tight">Need Expert Assistance?</h3>
+                                <p class="text-sm text-blue-100 leading-relaxed mb-6 font-medium">
+                                    A single mistake can lead to form rejection! Let our professional team fill out your form with <span class="text-yellow-300 font-bold">100% accuracy and security</span> for a very nominal fee.
+                                </p>
+                                
+                                <a href="${whatsappLink}" target="_blank" id="adWhatsappBtn" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-xl transition duration-300 shadow-xl flex justify-center items-center gap-3 text-lg mb-6 transform hover:scale-105">
+                                    <i class="fab fa-whatsapp text-2xl"></i> Connect on WhatsApp
+                                </a>
+                                
+                                <div class="text-xs text-gray-400 font-medium">
+                                    Redirecting to official website in <span id="adCountdown" class="text-yellow-400 font-bold text-sm">10</span> seconds...
+                        </div>
+                            </div>
+                        `;
+                        
+                        document.body.appendChild(adOverlay);
+                        leadForm.reset(); 
+
+                        let timeLeft = 10;
+                        const countdownElement = document.getElementById('adCountdown');
+                        
+                        const timerInterval = setInterval(() => {
+                            timeLeft--;
+                            countdownElement.innerText = timeLeft;
+                            
+                            if (timeLeft <= 0) {
+                                clearInterval(timerInterval);
+                                console.log("Timer complete. Redirecting directly to: ", finalTargetUrl);
+                                if(document.getElementById('adOverlayBox')) {
+                                    document.body.removeChild(adOverlay);
+                                }
+                                window.location.href = finalTargetUrl; 
+                            }
+                        }, 1000);
+
+                        document.getElementById('adWhatsappBtn').addEventListener('click', () => {
+                            clearInterval(timerInterval);
+                            countdownElement.innerText = "Paused (Complete your chat)";
+                        });
+
+                    })
+                    .catch(error => {
+                        console.error("Sheet Submission Error: ", error);
+                        alert("Connection error! Please try again.");
+                    })
+                    .finally(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    });
+                });
+            }
+        })();
     </script>
 </body>
 </html>
