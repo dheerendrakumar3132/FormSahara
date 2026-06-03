@@ -345,8 +345,8 @@
                 <h4 class="font-bold text-xl mb-4 text-yellow-800"><i class="fas fa-lightbulb mr-2"></i>8. Utility & Daily Needs</h4>
                 <div class="space-y-4">
                     <div class="flex justify-between items-center border-b pb-2">
-                        <span class="text-gray-700"><b>Electricity Bill:</b> UPPCL Payment/Check</span>
-                        <a href="https://consumer.uppcl.org/wss/pay_bill_home" target="_blank" class="text-blue-600 font-bold underline hover:text-blue-800">Pay Bill</a>
+                        <span class="text-gray-700"><b>Electricity Bill:</b> All 28 States & 8 Union Territories covered.</span>
+                        <a href="electricity-bill.html" target="_blank" class="text-blue-600 font-bold underline hover:text-blue-800">Pay Bill</a>
                     </div>
                     <div class="flex justify-between items-center border-b pb-2">
                         <span class="text-gray-700"><b>Gas Connection:</b> HP/Indane/Bharat</span>
@@ -696,7 +696,8 @@
                     // Strict verification for bypass rules
                     if (this.href.includes('wa.me') || 
                         this.href.includes('api.whatsapp.com') || 
-                        this.href.includes('banking-cards.html') || 
+                        this.href.includes('banking-cards.html') ||
+                        this.href.includes('electricity-bill.html') ||
                         this.classList.contains('whatsapp-float')) {
                         console.log("Bypassing popup for special link: ", this.href);
                         return; 
