@@ -145,51 +145,42 @@
     </main>
 
 <!-- Job Details Modal (Mobile: Compact & Desktop: Super-Sized XL) -->
-    <div id="jobDetailsModal" class="fixed inset-0 bg-gray-900 bg-opacity-85 z-[99999] hidden flex items-center justify-center backdrop-blur-sm p-3 md:p-6">
+    <div id="jobDetailsModal" class="fixed inset-0 bg-gray-900 bg-opacity-85 z-[99999] hidden flex items-center justify-center backdrop-blur-sm p-3 md:p-0">
         
-        <!-- Box Size: Mobile par w-full, Desktop par max-w-6xl -->
-        <div class="bg-white rounded-xl md:rounded-2xl shadow-2xl w-full max-w-full md:max-w-6xl max-h-[96vh] md:max-h-[95vh] flex flex-col overflow-hidden relative border-t-[6px] md:border-t-8 border-red-800 modal-enter">
+        <div class="bg-white rounded-xl md:rounded-none shadow-2xl w-full md:w-screen md:h-screen max-w-full max-h-[96vh] md:max-h-screen flex flex-col overflow-hidden relative border-t-[6px] md:border-t-8 border-red-800 modal-enter">
             
-            <!-- Close Button -->
-            <button id="closeModalBtn" class="absolute top-2 right-3 md:top-4 md:right-6 text-gray-400 hover:text-red-500 text-3xl md:text-4xl transition z-10 leading-none">&times;</button>
+            <button id="closeModalBtn" class="absolute top-2 right-3 md:top-6 md:right-8 text-gray-400 hover:text-red-500 text-3xl md:text-5xl transition z-10 leading-none">&times;</button>
             
-            <!-- Header Section -->
-            <div class="bg-slate-50 p-4 md:p-8 border-b border-gray-200 pr-10 md:pr-8">
+            <div class="bg-slate-50 p-4 md:p-8 md:px-12 border-b border-gray-200 pr-10 md:pr-16">
                 <span id="modalCategory" class="text-[10px] md:text-sm font-bold text-red-800 bg-red-100 px-2 md:px-4 py-1 md:py-1.5 rounded-sm md:rounded-full uppercase tracking-wider">Category</span>
                 
-                <!-- Title: Mobile par text-xl, Desktop par text-4xl -->
-                <h2 id="modalTitle" class="text-xl md:text-4xl font-black text-gray-900 mt-2 md:mt-4 leading-tight tracking-tight">Job Title Goes Here</h2>
+                <h2 id="modalTitle" class="text-xl md:text-4xl lg:text-5xl font-black text-gray-900 mt-2 md:mt-5 leading-tight tracking-tight">Job Title Goes Here</h2>
                 
-                <!-- Date Section -->
-                <div class="flex flex-col sm:flex-row sm:items-center text-red-600 font-bold text-[13px] md:text-base mt-2 md:mt-4">
+                <div class="flex flex-col sm:flex-row sm:items-center text-red-600 font-bold text-[13px] md:text-lg mt-2 md:mt-5">
                     <span><i class="far fa-calendar-alt mr-1"></i> Last Date For Apply:</span> 
                     <span id="modalDate" class="sm:ml-1 mt-1 sm:mt-0 break-words text-gray-800 sm:text-red-600">Loading...</span>
                 </div>
             </div>
 
-            <!-- Content Section -->
-            <div class="p-4 md:p-8 overflow-y-auto flex-grow bg-white">
-                <h3 class="text-base md:text-xl font-bold text-gray-800 border-b-2 border-yellow-400 inline-block mb-3 md:mb-6 pb-1">Important Details</h3>
+            <div class="p-4 md:p-8 md:px-12 overflow-y-auto flex-grow bg-white">
+                <h3 class="text-base md:text-2xl font-bold text-gray-800 border-b-2 border-yellow-400 inline-block mb-3 md:mb-6 pb-1">Important Details</h3>
                 
-                <!-- Details Text: Mobile par 14px, Desktop par text-xl -->
                 <div id="modalDetails" class="text-gray-800 text-[14px] md:text-xl leading-relaxed whitespace-pre-wrap font-medium md:tracking-wide">
                     Loading details...
                 </div>
             </div>
 
-            <!-- Footer Section (Buttons) -->
-            <div class="bg-gray-50 p-3 md:p-6 border-t border-gray-200 flex flex-col-reverse sm:flex-row gap-3 md:gap-4 justify-end items-center">
-                <button id="closeModalBtn2" class="w-full sm:w-auto px-4 py-2.5 md:px-8 md:py-3.5 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded-lg md:rounded-xl transition text-sm md:text-lg shadow-sm">
+            <div class="bg-gray-50 p-3 md:p-6 md:px-12 border-t border-gray-200 flex flex-col-reverse sm:flex-row gap-3 md:gap-6 justify-end items-center">
+                <button id="closeModalBtn2" class="w-full sm:w-auto px-4 py-2.5 md:px-10 md:py-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded-lg md:rounded-xl transition text-sm md:text-xl shadow-sm">
                     Close
                 </button>
-                <a href="#" id="modalApplyLink" target="_blank" class="w-full sm:w-auto px-4 py-2.5 md:px-8 md:py-3.5 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded-lg md:rounded-xl transition shadow-md flex items-center justify-center gap-2 text-sm md:text-lg">
-                    Click Here (Official Link) <i class="fas fa-external-link-alt text-xs md:text-sm"></i>
+                <a href="#" id="modalApplyLink" target="_blank" class="w-full sm:w-auto px-4 py-2.5 md:px-10 md:py-4 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded-lg md:rounded-xl transition shadow-md flex items-center justify-center gap-2 text-sm md:text-xl">
+                    Click Here (Official Link) <i class="fas fa-external-link-alt text-xs md:text-lg"></i>
                 </a>
             </div>
 
         </div>
     </div>
-
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-16 pb-8 border-t-4 border-yellow-500">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
