@@ -327,12 +327,87 @@
             modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
             if(closePopupBtn) closePopupBtn.addEventListener('click', () => leadPopup.classList.add('hidden'));
 
+        // 🚀 ZERO EFFORT AUTO-FORMATTER (Aap sheet me kuch bhi likho, ye apne aap sahi karega)
+            function formatMyText(text) {
+                if (!text) return 'No details provided.';
+                
+                // Extra spaces aur tedhi lines ko theek karne ke liye cleaning
+                let lines = text.split('\n').map(l => l.trim()).filter(l => l !== '');
+                let html = '';
+                let tableRows = [];
+                
+                lines.forEach(line => {
+                    // 1. HEADER DETECTION: Agar line badi hai ya usme Board/Recruitment/Exam hai
+                    if (line.toLowerCase().includes('board') || 
+                        line.toLowerCase().includes('recruitment') || 
+                        line.toLowerCase().includes('selection') || 
+                        (line.length > 40 && !line.includes(':') && !/\d/.test(line))) {
+                        
+                        html += `<h2 class="text-xl md:text-2xl font-black text-pink-600 mt-4 mb-2 text-center uppercase tracking-wide border-b border-pink-200 pb-2">${line}</h2>`;
+                    } 
+                    // 2. SUB-HEADING DETECTION: Chhoti headings jaise Important Dates, Application Fee
+                    else if (line.toLowerCase().includes('important date') || 
+                             line.toLowerCase().includes('application fee') || 
+                             line.toLowerCase().includes('vacancy details') || 
+                             line.toLowerCase().includes('how to fill')) {
+                        
+                        html += `<h3 class="text-lg md:text-xl font-bold text-green-700 mt-5 mb-3 border-b-2 border-yellow-400 inline-block pb-1">${line}</h3>`;
+                    } 
+                    // 3. KEY-VALUE COLON DETECTION: Jaise Post Date: 02 June, Last Date: 10-07
+                    else if (line.includes(':')) {
+                        let parts = line.split(':');
+                        let heading = parts.shift().trim();
+                        let value = parts.join(':').trim();
+                        
+                        // Last Date ko hamesha Red highlight karne ke liye
+                        let valueClass = (heading.toLowerCase().includes('last date') || value.toLowerCase().includes('extended')) ? 'text-red-600 font-bold' : 'text-gray-800 font-medium';
+                        
+                        html += `<div class="mb-2 text-[15px] md:text-lg border-b border-gray-100 pb-1"><span class="font-black text-blue-900">${heading} :</span> <span class="${valueClass}">${value}</span></div>`;
+                    } 
+                    // 4. AUTOMATIC TABLE/GRID DETECTION: Agar ek line me bahut saare numbers ya categories space se alag hain
+                    else if ((line.match(/\s{2,}/g) || []).length > 1 || line.split(' ').length > 4 && (/\d/.test(line) || line.toUpperCase() === line)) {
+                        // Shabdo ke beech ki extra spaces ko nikal kar unhe cells me badlo
+                        let cells = line.split(/\s{2,}/).map(c => c.trim()).filter(c => c !== '');
+                        if (cells.length > 1) {
+                            tableRows.push(cells);
+                        } else {
+                            html += `<div class="mb-1.5 text-[14px] md:text-base text-gray-700 flex items-start"><i class="fas fa-angle-double-right text-blue-500 mt-1 mr-2 text-sm"></i> <span class="font-medium">${line}</span></div>`;
+                        }
+                    }
+                    // 5. NORMAL LINE: Kuch bhi aur likha ho toh bullet point
+                    else {
+                        html += `<div class="mb-1.5 text-[14px] md:text-base text-gray-700 flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2 text-sm"></i> <span class="font-medium">${line}</span></div>`;
+                    }
+                });
+
+                // Agar koi bikhra hua table data mila, toh use ek sundar box me convert karo
+                if (tableRows.length > 0) {
+                    let tableHtml = '<div class="overflow-x-auto mb-5 mt-3 border-2 border-gray-300 rounded-xl shadow-md"><table class="w-full text-sm md:text-base text-center whitespace-nowrap"><tbody class="divide-y divide-gray-300">';
+                    
+                    tableRows.forEach((row, index) => {
+                        // Pehli row ko header jaisa rang dena (Dark Gray/Blue)
+                        let rowClass = index === 0 ? 'bg-slate-100 font-black text-blue-900' : 'hover:bg-blue-50 even:bg-gray-50 bg-white font-bold text-gray-800';
+                        tableHtml += `<tr class="${rowClass}">`;
+                        row.forEach(cell => {
+                            tableHtml += `<td class="px-4 py-3 border-r border-gray-300 last:border-r-0">${cell}</td>`;
+                        });
+                        tableHtml += '</tr>';
+                    });
+                    
+                    tableHtml += '</tbody></table></div>';
+                    // Poore HTML me table ko sahi jagah fit kar dena
+                    html = tableHtml + html;
+                }
+
+                return html;
+            }
+            
             // Open Modal for Specific Job
             function openModal(job) {
                 mTitle.innerText = job.JobTitle;
                 mCategory.innerText = job.Category || 'Update';
                 mDate.innerText = job.LastDate || 'Not Specified';
-                mDetails.innerHTML = job.Details || 'No details provided.';
+                mDetails.innerHTML = formatMyText(job.Details);
                 
                 if (job.OfficialLink) {
                     mApplyLink.href = job.OfficialLink;
