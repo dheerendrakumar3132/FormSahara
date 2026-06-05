@@ -487,7 +487,7 @@
                     const admitCardsData = [];
                     const latestJobsData = [];
 
-                     jobs.reverse().forEach(job => {
+                     jobs.forEach(job => {
                         let cat = (job.Category || "").toLowerCase();
                         if(cat.includes('result')) resultsData.push(job);
                         else if (cat.includes('admit')) admitCardsData.push(job);
